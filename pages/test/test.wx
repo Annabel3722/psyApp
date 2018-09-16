@@ -1,0 +1,162 @@
+<template>
+  <view>
+    <view class="weui-cells__title" style='font-color:#1d1626;font-size:14px'>这里是心理测试列表，请到首页登录后使用</view>
+    <ui-accordion bindchange="slide" wx:for="{{ accordion }}" header-height="50">
+      <view slot="header">
+      <ui-row height="45" border-bottom class="title">
+        <ui-col vertical-align="middle" align="left" space-left="10">
+          {{ item.title }}
+        </ui-col>
+        <ui-col vertical-align="middle" align="center" width="30"></ui-col>
+      </ui-row>
+      </view>
+      <view slot="content">
+      <ui-row height="40" wx:for="{{ item.content }}" wx:for-item="item2" class='content'>
+        <navigator url="{{ item2.path }}">
+          <ui-col vertical-align="middle" align="left" space-left="10">
+            {{ item2.title }}
+          </ui-col>
+        </navigator>
+      </ui-row>
+      </view>
+    </ui-accordion>
+  </view>
+</template>
+
+<script>
+export default {
+  config: {
+    navigationBarTitleText: "心理测试"
+  },
+  data: {
+    NAV_HEIGHT: wx.STATUS_BAR_HEIGHT + wx.DEFAULT_HEADER_HEIGHT + "px",
+    items: [],
+    show3: false,
+    accordion: [
+      {
+        title: "人格心理测试",
+        content: [
+          {
+            title: "大五人格测试",
+            path:"../home/contact"
+          },
+          {
+            title: "MBTI性格测试",
+            path:"../home/contact"
+          },
+          {
+            title: "霍兰德职业兴趣测试",
+            path:"../home/contact"
+          },
+          {
+            title: "卡特尔十六种个性因素测试",
+            path:"../home/contact"
+          }
+        ]
+      },
+      {
+        title: "心理健康管理",
+        content: [
+          {
+            title: "症状自评量表SCL90",
+            path:"../home/contact"
+          },
+          {
+            title: "PSTR压力测试问卷",
+            path:"../home/contact"
+          },
+          {
+            title: "贝克焦虑量表",
+            path:"../home/contact"
+          },
+          {
+            title: "抑郁",
+            path:"../home/contact"
+          },
+          {
+            title: "自杀意念",
+            path:"../home/contact"
+          }
+        ]
+      },
+      {
+        title: "自我认知管理",
+        content: [
+          {
+            title: "心理弹性量表",
+            path:"../home/contact"
+          },
+          {
+            title: "一般自我效能感量表",
+            path:"../home/contact"
+          },
+          {
+            title: "社交回避及苦恼量表",
+            path:"../home/contact"
+          }
+        ]
+      }
+    ]
+  },
+  openPopup3(e) {
+    wx.navigateTo({
+      url: '../home/contact'
+    })
+  },
+  handleShow3() {
+    this.setData({
+      show3: false
+    });
+  }
+};
+</script>
+
+<style lang="less">
+.ui-accordion {
+  .header {
+    .arrow {
+      right: 8px;
+      top: 10px;
+    }
+  }
+}
+.title {
+  width: 100%;
+  background-color: "#008792";
+  font-size: 14px;
+  .state {
+    border: 1px solid #008792;
+    width: 100%;
+    height: 30px;
+    // .mix-flex-center();
+    color: #008792;
+    font-size: 12px;
+  }
+}
+.weui-cells__title {
+  margin: 1em;
+  color: #999;
+  font-size: 14px;
+}
+.content {
+  background-color: #f6f5ec;
+  font-size: 14px;
+  border-bottom: 1px solid #fff;
+}
+.userinfo-avatar {
+  width: 128rpx;
+  height: 128rpx;
+  margin: 20rpx;
+  border-radius: 50%;
+}
+page {
+  overflow: hidden;
+  position: fixed;
+  background-image: url("https://psy-1255693559.cos.ap-guangzhou.myqcloud.com/4.png");
+  margin: 0px;
+  background-size: 100% 100%;
+}
+.popup1 {
+  padding: 40px 20px 0 20px;
+}
+</style>

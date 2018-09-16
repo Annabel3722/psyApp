@@ -1,0 +1,70 @@
+<template>
+  <page></page>
+</template>
+
+<script>
+import system from './static/utils/system'
+export default {
+  config: {
+    usingComponents: {},
+    pages: [
+      'pages/home/index',
+      'pages/test/test',
+      'pages/contact/contact'
+    ],
+    window: {
+      backgroundTextStyle: 'light',
+      backgroundColor: '#008792',
+      navigationBarBackgroundColor: '#008792',
+      navigationBarTextStyle: 'white'
+    },
+    tabBar: {
+      color: 'white',
+      selectedColor: 'white',
+      backgroundColor: '#008792',
+      list: [{
+          pagePath: 'pages/home/index',
+          text: '首页',
+          iconPath: 'images/home.png',
+          selectedIconPath: 'images/home.png'
+        },
+        {
+          pagePath: 'pages/test/test',
+          text: '心理测试',
+          iconPath: 'images/edit.png',
+          selectedIconPath: 'images/edit.png'
+        }
+      ]
+    },
+    networkTimeout: {
+      request: 10000
+    },
+    theme: {
+      'theme-color': '#f6f5ec'
+    }
+  },
+  globalData: {},
+  onLaunch() {
+    system.attachInfo()
+  },
+  onShow() {},
+  onHide() {}
+}
+</script>
+
+<style lang="less">
+@import './static/styles/index.less';
+.container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 200rpx 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-size: 12px;
+}
+</style>
