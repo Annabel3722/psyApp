@@ -12,11 +12,9 @@
       </view>
       <view slot="content">
       <ui-row height="40" wx:for="{{ item.content }}" wx:for-item="item2" class='content'>
-        <navigator url="{{ item2.path }}">
           <ui-col vertical-align="middle" align="left" space-left="10">
             {{ item2.title }}
           </ui-col>
-        </navigator>
       </ui-row>
       </view>
     </ui-accordion>
