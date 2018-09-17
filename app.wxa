@@ -10,7 +10,10 @@ export default {
     pages: [
       'pages/home/index',
       'pages/test/test',
-      'pages/contact/contact'
+      'pages/contact/contact',
+      'pages/scale/index',
+      'pages/scale/scale',
+      'pages/scale/result'
     ],
     window: {
       backgroundTextStyle: 'light',

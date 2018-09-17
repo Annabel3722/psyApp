@@ -1,7 +1,7 @@
 <template>
   <view>
     <view class="weui-cells__title" style='font-color:#1d1626;font-size:14px'>这里是心理测试列表，请到首页登录后使用</view>
-    <ui-accordion bindchange="slide" wx:for="{{ accordion }}" header-height="50">
+    <ui-accordion bindchange="slide" wx:for="{{ accordion }}" wx:key="item.title" header-height="50">
       <view slot="header">
       <ui-row height="45" border-bottom class="title">
         <ui-col vertical-align="middle" align="left" space-left="10">
@@ -11,12 +11,10 @@
       </ui-row>
       </view>
       <view slot="content">
-      <ui-row height="40" wx:for="{{ item.content }}" wx:for-item="item2" class='content'>
-        <navigator url="{{ item2.path }}">
-          <ui-col vertical-align="middle" align="left" space-left="10">
+      <ui-row height="40" wx:for="{{ item.content }}" wx:for-item="item2" wx:key="item2.path" class='content'>
+          <ui-col bindtap="navTo" data-Path="{{ item2.path }}" vertical-align="middle" align="left" space-left="10">
             {{ item2.title }}
           </ui-col>
-        </navigator>
       </ui-row>
       </view>
     </ui-accordion>
@@ -38,19 +36,19 @@ export default {
         content: [
           {
             title: "大五人格测试",
-            path:"../home/contact"
+            path:"../scale/index?style=five"
           },
           {
             title: "MBTI性格测试",
-            path:"../home/contact"
+            path:"../scale/index?style=mbti"
           },
           {
             title: "霍兰德职业兴趣测试",
-            path:"../home/contact"
+            path:"../scale/index?style=holland"
           },
           {
             title: "卡特尔十六种个性因素测试",
-            path:"../home/contact"
+            path:"../scale/index?style="
           }
         ]
       },
@@ -59,23 +57,23 @@ export default {
         content: [
           {
             title: "症状自评量表SCL90",
-            path:"../home/contact"
+            path:"../scale/index"
           },
           {
             title: "PSTR压力测试问卷",
-            path:"../home/contact"
+            path:"../scale/index"
           },
           {
             title: "贝克焦虑量表",
-            path:"../home/contact"
+            path:"../scale/index"
           },
           {
             title: "抑郁",
-            path:"../home/contact"
+            path:"../scale/index"
           },
           {
             title: "自杀意念",
-            path:"../home/contact"
+            path:"../scale/index"
           }
         ]
       },
@@ -84,29 +82,24 @@ export default {
         content: [
           {
             title: "心理弹性量表",
-            path:"../home/contact"
+            path:"../scale/index?style=cdrisc"
           },
           {
             title: "一般自我效能感量表",
-            path:"../home/contact"
+            path:"../scale/index?style=gses"
           },
           {
             title: "社交回避及苦恼量表",
-            path:"../home/contact"
+            path:"../scale/index"
           }
         ]
       }
     ]
   },
-  openPopup3(e) {
+  navTo(e){
     wx.navigateTo({
-      url: '../home/contact'
+      url:e.currentTarget.dataset.path,
     })
-  },
-  handleShow3() {
-    this.setData({
-      show3: false
-    });
   }
 };
 </script>

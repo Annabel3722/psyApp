@@ -1,0 +1,166 @@
+<template>
+  <view bindtouchstart='touchStart' bindtouchend="touchEnd" class="page">
+    <ui-divider>{{ question }}</ui-divider>
+    <wxs src="./mChanger.wxs" module="mChanger"></wxs>
+    <ui-check-list max="1" label-position="right" options="{{ mChanger.getName(answer) }}" type="circle" value="{{ mChanger.getValue(answer) }}" ></ui-check-list>
+    <!-- <block wx:key="questions" wx:for="{{items}}" wx:for-item="item" wx:for-index="index"  >
+    <view wx:key="questions" wx:for="{{questions}}" wx:for-item="question" wx:for-index="each" >
+    <view class="weui-cells__title" style='font-color:#1d1626' wx:if="{{index==each}}">
+    {{question}}
+    </view>
+    </view>
+    <radio-group class="weui-cells weui-cell__ft_in-radio" name="c{{index+1}}" bindchange="radioChange">
+    <label class="weui-cell weui-check__label" wx:for="{{item}}" wx:key="*this">
+      <ui-check-list title='默认' max="1" label-position="right" options="{{ item.name }}" type="circle" value="{{ item.value }}" color='#00a6ac'></ui-check-list>
+    <radio class='weui-cell__bd' style='font-size:14px;' color='#00a6ac' value='{{item.value}}' id='{{item.value}}' checked="{{items.checked}}">{{item.name}}</radio>
+    </label>
+    <view class="button-sp-area" wx:if="{{index==59}}">
+      <button type="primary" size="default" style='background-color:#009ad6;float:left;margin-top:2em;margin-left:7em' form-type='submit'> 提交测试 </button>
+    </view>
+    <view class="button-sp-area"  wx:else>
+    <button type="primary"  size="mini" style='background-color:#145b7d;float:left;margin:2em' disabled="{{disabled}}" bindtap="lastPage"> 上一题 </button>
+    <button type="primary"  size="mini" style='background-color:#145b7d;float:right;margin:2em' disabled="{{disabled}}" bindtap="nextPage" > 下一题 </button>    
+    </view>
+    </radio-group>
+    </block> -->
+  </view>
+</template>
+
+<script>
+import config from '../../static/data/config.js'
+export default {
+  config: {
+    navigationBarTitleText: '正在测试'
+  },
+  data: {
+    question:[],
+    answer:[],
+    site: 0,
+  },
+  lastPage: function (e) {
+    var _this = this;
+    var s = this.data.site - 1;
+   this.setData({
+     answer:  _this.data.items[s],
+     question:  _this.data.questions[s],
+     site: s
+   })
+   console.log("last")
+  },
+  nextPage: function (e) {
+    var _this = this;
+    var s = this.data.site + 1;
+   this.setData({
+     answer: _this.data.items[s],
+     question:  _this.data.questions[s],
+     site: s
+   })
+   console.log("next")
+  },
+  thisPage: function (e) {
+    this.setData({
+      cur: e.detail.current
+    })
+  },
+  radioChange: function (e) {
+    console.log(e.detail.value)
+  },
+  //滑动开始事件
+ touchStart: function (event) {
+  this.data.startX = event.touches[0].pageX
+  console.log("touchStart");
+ },
+ touchEnd: function (event) {
+  let _this = this;
+  console.log("touchEnd");
+  console.log(event.changedTouches[0].pageX - _this.data.startX)
+  if ( event.changedTouches[0].pageX - _this.data.startX  > 50) {      //右滑
+    _this.lastPage()
+    console.log("右划上一页");
+  } else if  ( event.changedTouches[0].pageX - _this.data.startX  < -50) {   //左滑
+    _this.nextPage();
+    console.log(event.changedTouches[0].pageX);
+    console.log("左划下一页");
+  }
+  _this.setData(
+    {
+      startX : event.changedTouches[0].pageX
+    }
+  )
+ },
+  
+  onLoad: function (options) {
+    var _this = this;
+     wx.request({
+      url: config.service.questionsUrl + options.style + '.html',
+      method: 'GET',
+      success: function (res) {
+        console.log(res);
+        _this.setData({
+          questions: res.data.sites[2].questions,
+          items:res.data.sites[3].items,
+          question:res.data.sites[2].questions[0],
+          answer:res.data.sites[3].items[0],
+          length: res.data.sites[2].questions.length
+        })
+      }
+    })
+    
+  },
+
+  /**
+   * 生命周期函数--监听页面初次渲染完成
+   */
+  onReady: function () {
+
+  },
+
+  /**
+   * 生命周期函数--监听页面显示
+   */
+  onShow: function () {
+
+  },
+
+  /**
+   * 生命周期函数--监听页面隐藏
+   */
+  onHide: function () {
+
+  },
+
+  /**
+   * 生命周期函数--监听页面卸载
+   */
+  onUnload: function () {
+
+  },
+
+  /**
+   * 页面相关事件处理函数--监听用户下拉动作
+   */
+  onPullDownRefresh: function () {
+
+  },
+
+  /**
+   * 页面上拉触底事件的处理函数
+   */
+  onReachBottom: function () {
+
+  },
+
+  /**
+   * 用户点击右上角分享
+   */
+  onShareAppMessage: function () {
+
+  }
+}
+</script>
+
+<style lang="less">
+.page{
+  height: 100vh;
+}
+</style>
