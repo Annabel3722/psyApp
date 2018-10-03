@@ -43,7 +43,7 @@ export default {
       request: 10000
     },
     theme: {
-      'theme-color': '#f6f5ec'
+      'theme-color': '#008792'
     }
   },
   globalData: {},

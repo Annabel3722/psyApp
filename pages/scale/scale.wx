@@ -1,8 +1,42 @@
 <template>
   <view bindtouchstart='touchStart' bindtouchend="touchEnd" class="page">
-    <ui-divider>{{ question }}</ui-divider>
+    <ui-mask show="{{showMask1}}" custom-style="{{customSyle}}" >
+            <view class="finger-swiper" data-show="{{false}}"  bindtap="handleShowMask1">
+                <ui-row>
+                    <ui-col space-right="10">
+                        <ui-icon type="one-finger-swipe-lef" size="36" color="#fff" align="right"></ui-icon>
+                    </ui-col>
+                    <ui-col space-left="10">
+                        <ui-icon type="one-finger-swipe-rig" size="36" color="#fff" align="left"></ui-icon>
+                    </ui-col>
+                </ui-row>
+                <view>左右滑屏，查看上/下一个案例</view>
+                <view class="know">我知道了</view>
+            </view>
+    </ui-mask>
+    <ui-row space-top=20 style="box-shadow: 0 0 10px #d0d0d0">
+      <ui-col align="left" width="100%">
+    <form bindsubmit='formSubmit'>
+    <view class="weui-cells__title" style='font-color:#1d1626;font-size:14px'>{{ question }}</view>
     <wxs src="./mChanger.wxs" module="mChanger"></wxs>
-    <ui-check-list max="1" label-position="right" options="{{ mChanger.getName(answer) }}" type="circle" value="{{ mChanger.getValue(answer) }}" ></ui-check-list>
+    <radio-group  name="c{{site+1}}">
+    <label for="c{{ site+1 }}" name="c{{ site+1 }}" >
+    <ui-check-list color="#00a6ac"  max="1" label-position="right" options="{{ answer }}" type="circle" value="{{ answer }}" id='c{{ site+1 }}' name="c{{ site+1 }}" bindchange="radioChange">
+    </ui-check-list>
+    </label>
+    
+    <text decode="{{true}}">\n</text>
+    <view>
+    <progress percent="{{(site+1)/questions.length*100}}"  />
+    </view>
+    <view  wx:if="{{(site+1)==questions.length}}">
+      <button type='default' style='margin:2em;background-color:#2585a6;color:white' form-type='submit' >提交测试</button>
+    </view>
+    <view  wx:else></view>
+    </radio-group>
+    </form>
+      </ui-col>
+    </ui-row>
     <!-- <block wx:key="questions" wx:for="{{items}}" wx:for-item="item" wx:for-index="index"  >
     <view wx:key="questions" wx:for="{{questions}}" wx:for-item="question" wx:for-index="each" >
     <view class="weui-cells__title" style='font-color:#1d1626' wx:if="{{index==each}}">
@@ -36,6 +70,23 @@ export default {
     question:[],
     answer:[],
     site: 0,
+    total:{'name':'test'},
+    style:'',
+    NAV_HEIGHT:wx.STATUS_BAR_HEIGHT+wx.DEFAULT_HEADER_HEIGHT+'px',
+    showMask1: true,
+    customSyle:{
+      'background':'rgba(0, 0, 0, 0.8)',
+      'display': 'flex',
+      'align-items': 'center',
+      'justify-content': 'center'
+    }        
+  },
+  handleShowMask1 (e) {
+    console.log(e)
+    let show = e.currentTarget.dataset.show
+    this.setData({
+      showMask1: show
+    })
   },
   lastPage: function (e) {
     var _this = this;
@@ -45,7 +96,6 @@ export default {
      question:  _this.data.questions[s],
      site: s
    })
-   console.log("last")
   },
   nextPage: function (e) {
     var _this = this;
@@ -55,7 +105,6 @@ export default {
      question:  _this.data.questions[s],
      site: s
    })
-   console.log("next")
   },
   thisPage: function (e) {
     this.setData({
@@ -63,24 +112,25 @@ export default {
     })
   },
   radioChange: function (e) {
-    console.log(e.detail.value)
+    var _this=this;
+    var s =_this.data.site+1
+    var i="total.c"+s
+    console.log(e.detail.value[0])
+    this.setData({
+      [i]:e.detail.value[0]
+    })
+    console.log(_this.data.total)
   },
   //滑动开始事件
  touchStart: function (event) {
   this.data.startX = event.touches[0].pageX
-  console.log("touchStart");
  },
  touchEnd: function (event) {
   let _this = this;
-  console.log("touchEnd");
-  console.log(event.changedTouches[0].pageX - _this.data.startX)
   if ( event.changedTouches[0].pageX - _this.data.startX  > 50) {      //右滑
     _this.lastPage()
-    console.log("右划上一页");
   } else if  ( event.changedTouches[0].pageX - _this.data.startX  < -50) {   //左滑
     _this.nextPage();
-    console.log(event.changedTouches[0].pageX);
-    console.log("左划下一页");
   }
   _this.setData(
     {
@@ -88,20 +138,34 @@ export default {
     }
   )
  },
-  
+  formSubmit:function(e){
+    var _this=this
+    console.log(_this.data.total)
+    wx.request({
+      url: config.service.scaleUrl + _this.data.style + '/m',
+      data: _this.data.total,
+      method: 'POST',
+      header:{
+        'content-type':'application/x-www-form-urlencoded'
+      },
+      success(res){
+        console.log(res.data)
+      }
+    })
+  },
   onLoad: function (options) {
     var _this = this;
      wx.request({
       url: config.service.questionsUrl + options.style + '.html',
       method: 'GET',
       success: function (res) {
-        console.log(res);
         _this.setData({
           questions: res.data.sites[2].questions,
           items:res.data.sites[3].items,
           question:res.data.sites[2].questions[0],
           answer:res.data.sites[3].items[0],
-          length: res.data.sites[2].questions.length
+          length: res.data.sites[2].questions.length,
+          style:options.style
         })
       }
     })
@@ -162,5 +226,22 @@ export default {
 <style lang="less">
 .page{
   height: 100vh;
+  padding: 10px;
+}
+.weui-cells__title {
+  margin: 1em;
+  color: black;
+  font-size: 14px;
+}
+.mask1{
+  .mix-flex-center();
+}
+.finger-swiper{
+  color: #fff;
+  text-align: center;
+}
+.know{
+  color: #d6545d;
+  text-decoration: underline;
 }
 </style>

@@ -45,10 +45,6 @@ export default {
           {
             title: "霍兰德职业兴趣测试",
             path:"../scale/index?style=holland"
-          },
-          {
-            title: "卡特尔十六种个性因素测试",
-            path:"../scale/index?style="
           }
         ]
       },
@@ -57,23 +53,19 @@ export default {
         content: [
           {
             title: "症状自评量表SCL90",
-            path:"../scale/index"
+            path:"../scale/index?style=scl90"
           },
           {
             title: "PSTR压力测试问卷",
-            path:"../scale/index"
+            path:"../scale/index?style=pstr"
           },
           {
             title: "贝克焦虑量表",
-            path:"../scale/index"
+            path:"../scale/index?style=bai"
           },
           {
-            title: "抑郁",
-            path:"../scale/index"
-          },
-          {
-            title: "自杀意念",
-            path:"../scale/index"
+            title: "抑郁自评量表",
+            path:"../scale/index?style=sds"
           }
         ]
       },
@@ -87,10 +79,6 @@ export default {
           {
             title: "一般自我效能感量表",
             path:"../scale/index?style=gses"
-          },
-          {
-            title: "社交回避及苦恼量表",
-            path:"../scale/index"
           }
         ]
       }

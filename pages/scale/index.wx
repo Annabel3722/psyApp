@@ -4,7 +4,7 @@
     <text decode="{{true}}">{{ psg1 }}</text>
     <text decode="{{true}}">{{ psg2 }}</text>
     </view>
-    <button class='weui-btn weui-btn_primary' type='default' style='margin:2em;background-color:#2585a6;color:white' bindtap='goto'>开始测试</button>
+    <button  type='default' style='margin:2em;background-color:#2585a6;color:white' bindtap='goto'>开始测试</button>
   </view>
 </template>
 
@@ -21,7 +21,7 @@ export default {
   getShow: function () {
     var that = this
     wx.request({
-      url: 'https://psy-1255693559.cos-website.ap-guangzhou.myqcloud.com/index/'+that.data.style+'.html',
+      url: 'https://psy-1255693559.cos-website.ap-guangzhou.myqcloud.com/scale/'+that.data.style+'.html',
       method: 'GET',
       success: function (res) {
         console.log(res);
