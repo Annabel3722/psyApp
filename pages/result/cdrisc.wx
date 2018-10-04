@@ -1,0 +1,96 @@
+<template>
+  <view>
+<view class="weui-cells__title">您的测试结果</view>
+<view class="weui-cells__title">均分最高分4分，最低分0分，得分越高，心理弹性越强，各项表现越强。</view>
+<ui-row-list border-left-indent>
+    <ui-row height="40">
+        <ui-col class="text">
+            坚韧型
+        </ui-col>
+        <ui-col class="text">
+            {{ jianren }}分
+        </ui-col>
+    </ui-row>
+
+    <ui-row height="40">
+        <ui-col class="text">
+            坚韧型均分
+        </ui-col>
+        <ui-col class="text">
+          {{ jianrene }}分
+        </ui-col>
+    </ui-row>
+
+    <ui-row height="40">
+        <ui-col class="text">
+            力量型
+        </ui-col>
+        <ui-col class="text">
+          {{ liliang }}分
+        </ui-col>
+    </ui-row>
+
+
+    <ui-row height="40">
+        <ui-col class="text">
+            力量型均分
+        </ui-col>
+        <ui-col class="text">
+          {{ liliange }}分
+        </ui-col>
+    </ui-row>
+
+    <ui-row height="40">
+        <ui-col class="text">
+            乐观型
+        </ui-col>
+        <ui-col class="text">
+          {{ leguan }}分
+        </ui-col>
+    </ui-row>
+
+
+    <ui-row height="40">
+        <ui-col class="text">
+            乐观型均分
+        </ui-col>
+        <ui-col class="text">
+          {{ leguane }}分
+        </ui-col>
+    </ui-row>
+  </ui-row-list>
+</view>
+
+  </view>
+</template>
+
+<script>
+export default {
+  config: {
+    navigationBarTitleText: '您的测评结果'
+  },
+  data: {
+    jianren:0,
+    liliang:0,
+    leguan:0,
+    jianrene:0,
+    liliange:0,
+    leguane:0
+  },
+  onLoad: function(options) {
+    console.log(options)
+    var _this=this;
+    _this.setData({
+      jianren: options.jianren,
+      liliang: options.liliang,
+      leguan: options.leguan,
+      jianrene: options.jianrene,
+      liliange: options.liliange,
+      leguane: options.leguane
+    })
+  }
+}
+</script>
+
+<style lang="less">
+</style>

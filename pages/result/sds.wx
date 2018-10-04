@@ -1,0 +1,31 @@
+<template>
+  <view>
+    你的得分为{{ total }}。
+    <view wx:if="{{total < 53 }}"> 你没有抑郁症状。</view>
+    <view wx:elif="{{total >= 53 and total <= 62 }}"> 你有轻度抑郁。</view>
+    <view wx:elif="{{total > 62 and total < 73 }}"> 你有中度抑郁。</view>
+    <view wx:elif="{{total >= 73 }}"> 你有重度抑郁。</view>
+    如有疑问，请向专业咨询师寻求帮助。
+  </view>
+</template>
+
+<script>
+export default {
+  config: {
+    navigationBarTitleText: '您的测评结果'
+  },
+  data: {
+    total:0
+  },
+  onLoad: function(options) {
+    console.log(options)
+    var _this=this;
+    _this.setData({
+      total:options.total
+    })
+  }
+}
+</script>
+
+<style lang="less">
+</style>

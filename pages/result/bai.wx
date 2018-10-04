@@ -1,0 +1,31 @@
+<template>
+  <view>
+    你的分值为{{ total }}分。属于<view wx:if="{{total >= 15 and total <= 25 }}">轻度焦虑</view>
+    <view wx:elif="{{total >= 26 and total <= 35 }}">中度焦虑</view>
+    <view wx:elif="{{total >= 36 }}">重度焦虑</view>
+    <view wx:else>无焦虑症状</view>。
+    <text>/n/n</text>
+    如有疑问，请向专业咨询师寻求帮助。
+  </view>
+</template>
+
+<script>
+export default {
+  config: {
+    navigationBarTitleText: '您的测评结果'
+  },
+  data: {
+    total:0
+  },
+  onLoad: function(options) {
+    console.log(options)
+    var _this=this;
+    _this.setData({
+      total:options.total
+    })
+  }
+}
+</script>
+
+<style lang="less">
+</style>

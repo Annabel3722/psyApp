@@ -13,7 +13,16 @@ export default {
       'pages/contact/contact',
       'pages/scale/index',
       'pages/scale/scale',
-      'pages/scale/result'
+      'pages/scale/result',
+      'pages/result/five',
+      'pages/result/gses',
+      'pages/result/sds',
+      'pages/result/pstr',
+      'pages/result/holland',
+      'pages/result/cdrisc',
+      'pages/result/bai',
+      'pages/result/scl90',
+      'pages/result/mbti'
     ],
     window: {
       backgroundTextStyle: 'light',
@@ -57,6 +66,7 @@ export default {
 
 <style lang="less">
 @import './static/styles/index.less';
+
 .container {
   height: 100%;
   display: flex;

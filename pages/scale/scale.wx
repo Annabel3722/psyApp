@@ -1,18 +1,18 @@
 <template>
   <view bindtouchstart='touchStart' bindtouchend="touchEnd" class="page">
     <ui-mask show="{{showMask1}}" custom-style="{{customSyle}}" >
-            <view class="finger-swiper" data-show="{{false}}"  bindtap="handleShowMask1">
-                <ui-row>
-                    <ui-col space-right="10">
-                        <ui-icon type="one-finger-swipe-lef" size="36" color="#fff" align="right"></ui-icon>
-                    </ui-col>
-                    <ui-col space-left="10">
-                        <ui-icon type="one-finger-swipe-rig" size="36" color="#fff" align="left"></ui-icon>
-                    </ui-col>
-                </ui-row>
-                <view>左右滑屏，查看上/下一个案例</view>
-                <view class="know">我知道了</view>
-            </view>
+      <view class="finger-swiper" data-show="{{false}}"  bindtap="handleShowMask1">
+        <ui-row>
+          <ui-col space-right="10">
+            <ui-icon type="one-finger-swipe-lef" size="36" color="#fff" align="right"></ui-icon>
+          </ui-col>
+          <ui-col space-left="10">
+            <ui-icon type="one-finger-swipe-rig" size="36" color="#fff" align="left"></ui-icon>
+          </ui-col>
+        </ui-row>
+        <view>左右滑屏，查看上/下一个案例</view>
+        <view class="know">我知道了</view>
+      </view>      
     </ui-mask>
     <ui-row space-top=20 style="box-shadow: 0 0 10px #d0d0d0">
       <ui-col align="left" width="100%">
@@ -37,194 +37,182 @@
     </form>
       </ui-col>
     </ui-row>
-    <!-- <block wx:key="questions" wx:for="{{items}}" wx:for-item="item" wx:for-index="index"  >
-    <view wx:key="questions" wx:for="{{questions}}" wx:for-item="question" wx:for-index="each" >
-    <view class="weui-cells__title" style='font-color:#1d1626' wx:if="{{index==each}}">
-    {{question}}
-    </view>
-    </view>
-    <radio-group class="weui-cells weui-cell__ft_in-radio" name="c{{index+1}}" bindchange="radioChange">
-    <label class="weui-cell weui-check__label" wx:for="{{item}}" wx:key="*this">
-      <ui-check-list title='默认' max="1" label-position="right" options="{{ item.name }}" type="circle" value="{{ item.value }}" color='#00a6ac'></ui-check-list>
-    <radio class='weui-cell__bd' style='font-size:14px;' color='#00a6ac' value='{{item.value}}' id='{{item.value}}' checked="{{items.checked}}">{{item.name}}</radio>
-    </label>
-    <view class="button-sp-area" wx:if="{{index==59}}">
-      <button type="primary" size="default" style='background-color:#009ad6;float:left;margin-top:2em;margin-left:7em' form-type='submit'> 提交测试 </button>
-    </view>
-    <view class="button-sp-area"  wx:else>
-    <button type="primary"  size="mini" style='background-color:#145b7d;float:left;margin:2em' disabled="{{disabled}}" bindtap="lastPage"> 上一题 </button>
-    <button type="primary"  size="mini" style='background-color:#145b7d;float:right;margin:2em' disabled="{{disabled}}" bindtap="nextPage" > 下一题 </button>    
-    </view>
-    </radio-group>
-    </block> -->
   </view>
 </template>
 
 <script>
-import config from '../../static/data/config.js'
+import config from "../../static/data/config.js";
 export default {
   config: {
-    navigationBarTitleText: '正在测试'
+    navigationBarTitleText: "正在测试"
   },
   data: {
-    question:[],
-    answer:[],
+    question: [],
+    answer: [],
     site: 0,
-    total:{'name':'test'},
-    style:'',
-    NAV_HEIGHT:wx.STATUS_BAR_HEIGHT+wx.DEFAULT_HEADER_HEIGHT+'px',
+    total: { name: "test" },
+    style: "",
+    NAV_HEIGHT: wx.STATUS_BAR_HEIGHT + wx.DEFAULT_HEADER_HEIGHT + "px",
     showMask1: true,
-    customSyle:{
-      'background':'rgba(0, 0, 0, 0.8)',
-      'display': 'flex',
-      'align-items': 'center',
-      'justify-content': 'center'
-    }        
+    customSyle: {
+      background: "rgba(0, 0, 0, 0.8)",
+      display: "flex",
+      "align-items": "center",
+      "justify-content": "center"
+    }
   },
-  handleShowMask1 (e) {
-    console.log(e)
-    let show = e.currentTarget.dataset.show
+  handleShowMask1(e) {
+    console.log(e);
+    let show = e.currentTarget.dataset.show;
     this.setData({
       showMask1: show
-    })
+    });
   },
-  lastPage: function (e) {
+  lastPage: function(e) {
     var _this = this;
     var s = this.data.site - 1;
-   this.setData({
-     answer:  _this.data.items[s],
-     question:  _this.data.questions[s],
-     site: s
-   })
+    this.setData({
+      answer: _this.data.items[s],
+      question: _this.data.questions[s],
+      site: s
+    });
   },
-  nextPage: function (e) {
+  nextPage: function(e) {
     var _this = this;
     var s = this.data.site + 1;
-   this.setData({
-     answer: _this.data.items[s],
-     question:  _this.data.questions[s],
-     site: s
-   })
+    this.setData({
+      answer: _this.data.items[s],
+      question: _this.data.questions[s],
+      site: s
+    });
   },
-  thisPage: function (e) {
+  thisPage: function(e) {
     this.setData({
       cur: e.detail.current
-    })
+    });
   },
-  radioChange: function (e) {
-    var _this=this;
-    var s =_this.data.site+1
-    var i="total.c"+s
-    console.log(e.detail.value[0])
+  radioChange: function(e) {
+    var _this = this;
+    var s = _this.data.site + 1;
+    var i = "total.c" + s;
+    console.log(e.detail.value[0]);
     this.setData({
-      [i]:e.detail.value[0]
-    })
-    console.log(_this.data.total)
+      [i]: e.detail.value[0]
+    });
+    console.log(_this.data.total);
   },
   //滑动开始事件
- touchStart: function (event) {
-  this.data.startX = event.touches[0].pageX
- },
- touchEnd: function (event) {
-  let _this = this;
-  if ( event.changedTouches[0].pageX - _this.data.startX  > 50) {      //右滑
-    _this.lastPage()
-  } else if  ( event.changedTouches[0].pageX - _this.data.startX  < -50) {   //左滑
-    _this.nextPage();
-  }
-  _this.setData(
-    {
-      startX : event.changedTouches[0].pageX
-    }
-  )
- },
-  formSubmit:function(e){
-    var _this=this
-    console.log(_this.data.total)
-    wx.request({
-      url: config.service.scaleUrl + _this.data.style + '/m',
-      data: _this.data.total,
-      method: 'POST',
-      header:{
-        'content-type':'application/x-www-form-urlencoded'
-      },
-      success(res){
-        console.log(res.data)
-      }
-    })
+  touchStart: function(event) {
+    this.data.startX = event.touches[0].pageX;
   },
-  onLoad: function (options) {
+  touchEnd: function(event) {
+    let _this = this;
+    if (event.changedTouches[0].pageX - _this.data.startX > 50) {
+      //右滑
+      _this.lastPage();
+    } else if (event.changedTouches[0].pageX - _this.data.startX < -50) {
+      //左滑
+      _this.nextPage();
+    }
+    _this.setData({
+      startX: event.changedTouches[0].pageX
+    });
+  },
+  formSubmit: function(e) {
     var _this = this;
-     wx.request({
-      url: config.service.questionsUrl + options.style + '.html',
-      method: 'GET',
-      success: function (res) {
+    console.log(_this.data.total);
+    wx.request({
+      url: config.service.scaleUrl + _this.data.style + "/m",
+      data: _this.data.total,
+      method: "POST",
+      header: {
+        "content-type": "application/x-www-form-urlencoded"
+      },
+      success(res) {
+        console.log(res.data);
+        if(_this.data.style=='five')
+          wx.navigateTo({url: '../result/five?f1='+JSON.stringify(res.data.sites[0].f1)+'&f2='+JSON.stringify(res.data.sites[1].f2)+'&f3='+JSON.stringify(res.data.sites[2].f3)
+          +'&f4='+JSON.stringify(res.data.sites[3].f4)+'&f5='+JSON.stringify(res.data.sites[4].f5)})
+        else if(_this.data.style=='bai')
+          wx.navigateTo({url:'../result/bai?total='+JSON.stringify(res.data.sites[0].total)})
+        else if(_this.data.style=='gses')
+          wx.navigateTo({url:'../result/gses?total='+JSON.stringify(res.data.sites[0].total)})
+        else if(_this.data.style=='cdrisc')
+          wx.navigateTo({url:'../result/cdrisc?jianren='+JSON.stringify(res.data.sites[0].jianren)+'&jianrene='+JSON.stringify(res.data.sites[1].jianrene)+'&liliang='+JSON.stringify(res.data.sites[2].liliang)
+          +'&liliange='+JSON.stringify(res.data.sites[3].liliange)+'&leguan='+JSON.stringify(res.data.sites[4].leguan)+'&leguane='+JSON.stringify(res.data.sites[5].leguane)})
+        else if(_this.data.style=='holland')
+          wx.navigateTo({url:'../result/holland?result='+JSON.stringify(res.data.sites[0].result)+'&style='+JSON.stringify(res.data.sites[1].style)})
+        else if(_this.data.style=='mbti')
+          wx.navigateTo({url:'../result/mbti?qe='+JSON.stringify(res.data.sites[0].qe) + '&qi='+JSON.stringify(res.data.sites[1].qi) +'&qn='+JSON.stringify(res.data.sites[2].qn)+'&qs='+JSON.stringify(res.data.sites[3].qs)
+          +'&qt='+JSON.stringify(res.data.sites[4].qt) +'&qj='+JSON.stringify(res.data.sites[5].qj) +'&qp='+JSON.stringify(res.data.sites[6].qp)+'&qf='+JSON.stringify(res.data.sites[7].qf)+'&style='+JSON.stringify(res.data.sites[8].style)})
+        else if(_this.data.style=='pstr')
+          wx.navigateTo({url:'../result/pstr?total='+JSON.stringify(res.data.sites[0].total)})
+        else if(_this.data.style=='scl90')
+          wx.navigateTo({url:'../result/scl90?qutihua='+JSON.stringify(res.data.sites[0].qutihua)+'&qiangpo='+JSON.stringify(res.data.sites[1].qiangpo) +'&renjimingan='+JSON.stringify(res.data.sites[2].renjimingan) +'&yiyu='+ JSON.stringify(res.data.sites[3].yiyu)+'&jiaolv='
+          +JSON.stringify(res.data.sites[4].jiaolv)+'&didui='+JSON.stringify(res.data.sites[5].didui) +'&kongbu='+JSON.stringify(res.data.sites[6].kongbu)+'&pianzhi='+JSON.stringify(res.data.sites[7].pianzhi) + '&jinshenbing'+JSON.stringify(res.data.sites[8].jinshenbing) +'&qita='
+          + JSON.stringify(res.data.sites[9].qita) + '&total=' +JSON.stringify(res.data.sites[10].total)})
+        else if(_this.data.style=='sds')
+          wx.navigateTo({url:'../result/sds?total='+JSON.stringify(res.data.sites[0].total)})
+      }
+    });
+  },
+  onLoad: function(options) {
+    var _this = this;
+    wx.request({
+      url: config.service.questionsUrl + options.style + ".html",
+      method: "GET",
+      success: function(res) {
         _this.setData({
           questions: res.data.sites[2].questions,
-          items:res.data.sites[3].items,
-          question:res.data.sites[2].questions[0],
-          answer:res.data.sites[3].items[0],
+          items: res.data.sites[3].items,
+          question: res.data.sites[2].questions[0],
+          answer: res.data.sites[3].items[0],
           length: res.data.sites[2].questions.length,
-          style:options.style
-        })
+          style: options.style
+        });
       }
-    })
-    
+    });
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function () {
-
-  },
+  onReady: function() {},
 
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function () {
-
-  },
+  onShow: function() {},
 
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide: function () {
-
-  },
+  onHide: function() {},
 
   /**
    * 生命周期函数--监听页面卸载
    */
-  onUnload: function () {
-
-  },
+  onUnload: function() {},
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function () {
-
-  },
+  onPullDownRefresh: function() {},
 
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function () {
-
-  },
+  onReachBottom: function() {},
 
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function () {
-
-  }
-}
+  onShareAppMessage: function() {}
+};
 </script>
 
 <style lang="less">
-.page{
+.page {
   height: 100vh;
   padding: 10px;
 }
@@ -233,14 +221,14 @@ export default {
   color: black;
   font-size: 14px;
 }
-.mask1{
+.mask1 {
   .mix-flex-center();
 }
-.finger-swiper{
+.finger-swiper {
   color: #fff;
   text-align: center;
 }
-.know{
+.know {
   color: #d6545d;
   text-decoration: underline;
 }
