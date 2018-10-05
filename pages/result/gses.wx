@@ -1,13 +1,14 @@
 <template>
   <view>
+    <ui-row space-top=20 style="box-shadow: 0 0 10px #d0d0d0">
+      <ui-col align="left" >
     <view class="weui-cells__title">分数越高说明自信心越高</view>
-  <view class="weui-panel">
     <view class="weui-panel__bd">
         <view class="weui-media-box weui-media-box_text">
             <text class="weui-media-box__title" style='font-size:15px;'>总分{{ total }}分</text>
         </view>
     </view>
-</view>
+    
 <view class="weui-cells__title">
 <view wx:if="{{ total <= 10 }}" >
 你的自信心很低，甚至有点自卑，建议经常鼓励自己，相信自己是行的，正确地对待自己的优点和缺点，学会欣赏自己。
@@ -20,7 +21,10 @@
 </view>
 <view wx:else>你的自信心非常高，但要注意正确看待自己的缺点。
 </view>
-</view></view>
+</view>
+</ui-col>
+</ui-row>
+</view>
 </template>
 
 <script>
@@ -37,6 +41,7 @@ export default {
     _this.setData({
       total:options.total
     })
+    console.log(typeof total)
   }
 }
 </script>

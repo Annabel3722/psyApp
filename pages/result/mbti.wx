@@ -10,7 +10,6 @@
         </view>
     </view>
 </view>
-            <text>\n</text>
             <view class="result" wx:if="{{style=='ISTJ'}}">
             详尽、精确、系统、勤劳，关注细节。致力于改善组织程序与过程，无论组织处在发展的顺境还是逆境，都对组织保持忠诚。 <text><text>\n</text><text>\n</text></text>
             对组织的贡献 <text>\n</text>
@@ -791,6 +790,7 @@
 </template>
 
 <script>
+var wxCharts = require('../../static/utils/wxcharts.js');
 export default {
   config: {
     navigationBarTitleText: '您的测评结果'
@@ -820,9 +820,23 @@ export default {
       qp: options.qp,
       style: options.style
     })
+    new wxCharts({
+        canvasId: 'columnCanvas',
+        type: 'column',
+        categories: ['外向(E)', '内向(I)', '直觉(N)', '感觉(S)', '情感(F)','思考(T)', '判断(J)', '知觉(P)'],
+        series: [{
+          name: '性格维度',
+          data: [this.data.qe, this.data.qi, this.data.qn, this.data.qs, this.data.qf, this.data.qt, this.data.qj, this.data.qp]
+        }],
+        width: 320,
+        height: 150
+    });
   }
 }
 </script>
 
 <style lang="less">
+.result{
+  padding:20px;
+}
 </style>

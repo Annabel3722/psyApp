@@ -10,12 +10,11 @@
             <ui-icon type="one-finger-swipe-rig" size="36" color="#fff" align="left"></ui-icon>
           </ui-col>
         </ui-row>
-        <view>左右滑屏，查看上/下一个案例</view>
+        <view>左右滑屏，查看上/下一道题</view>
         <view class="know">我知道了</view>
       </view>      
     </ui-mask>
-    <ui-row space-top=20 style="box-shadow: 0 0 10px #d0d0d0">
-      <ui-col align="left" width="100%">
+    
     <form bindsubmit='formSubmit'>
     <view class="weui-cells__title" style='font-color:#1d1626;font-size:14px'>{{ question }}</view>
     <wxs src="./mChanger.wxs" module="mChanger"></wxs>
@@ -35,8 +34,8 @@
     <view  wx:else></view>
     </radio-group>
     </form>
-      </ui-col>
-    </ui-row>
+    
+    
   </view>
 </template>
 
@@ -130,29 +129,31 @@ export default {
       },
       success(res) {
         console.log(res.data);
+        var obj=res.data.sites
         if(_this.data.style=='five')
-          wx.navigateTo({url: '../result/five?f1='+JSON.stringify(res.data.sites[0].f1)+'&f2='+JSON.stringify(res.data.sites[1].f2)+'&f3='+JSON.stringify(res.data.sites[2].f3)
-          +'&f4='+JSON.stringify(res.data.sites[3].f4)+'&f5='+JSON.stringify(res.data.sites[4].f5)})
+          wx.navigateTo({url: '../result/five?f1='+obj[0].f1+'&f2='+obj[1].f2+'&f3='+obj[2].f3
+          +'&f4='+obj[3].f4+'&f5='+obj[4].f5})
         else if(_this.data.style=='bai')
-          wx.navigateTo({url:'../result/bai?total='+JSON.stringify(res.data.sites[0].total)})
+          wx.navigateTo({url:'../result/bai?total='+obj[0].total})
         else if(_this.data.style=='gses')
-          wx.navigateTo({url:'../result/gses?total='+JSON.stringify(res.data.sites[0].total)})
+          wx.navigateTo({url:'../result/gses?total='+obj[0].total})
         else if(_this.data.style=='cdrisc')
-          wx.navigateTo({url:'../result/cdrisc?jianren='+JSON.stringify(res.data.sites[0].jianren)+'&jianrene='+JSON.stringify(res.data.sites[1].jianrene)+'&liliang='+JSON.stringify(res.data.sites[2].liliang)
-          +'&liliange='+JSON.stringify(res.data.sites[3].liliange)+'&leguan='+JSON.stringify(res.data.sites[4].leguan)+'&leguane='+JSON.stringify(res.data.sites[5].leguane)})
+          wx.navigateTo({url:'../result/cdrisc?jianren='+obj[0].jianren+'&jianrene='+obj[1].jianrene+'&liliang='+obj[2].liliang
+          +'&liliange='+obj[3].liliange+'&leguan='+obj[4].leguan+'&leguane='+obj[5].leguane})
         else if(_this.data.style=='holland')
-          wx.navigateTo({url:'../result/holland?result='+JSON.stringify(res.data.sites[0].result)+'&style='+JSON.stringify(res.data.sites[1].style)})
+          wx.navigateTo({url:'../result/holland?xianshi='+obj[0].xianshi+'&yanjiu='+obj[1].yanjiu+'&yishu='+obj[2].yishu+'&shehui='+obj[3].shehui
+          +'&guanli='+obj[4].guanli+'&changgui='+obj[5].changgui+'&style='+obj[6].style})
         else if(_this.data.style=='mbti')
-          wx.navigateTo({url:'../result/mbti?qe='+JSON.stringify(res.data.sites[0].qe) + '&qi='+JSON.stringify(res.data.sites[1].qi) +'&qn='+JSON.stringify(res.data.sites[2].qn)+'&qs='+JSON.stringify(res.data.sites[3].qs)
-          +'&qt='+JSON.stringify(res.data.sites[4].qt) +'&qj='+JSON.stringify(res.data.sites[5].qj) +'&qp='+JSON.stringify(res.data.sites[6].qp)+'&qf='+JSON.stringify(res.data.sites[7].qf)+'&style='+JSON.stringify(res.data.sites[8].style)})
+          wx.navigateTo({url:'../result/mbti?qe='+obj[0].qe + '&qi='+obj[1].qi +'&qn='+obj[2].qn+'&qs='+obj[3].qs
+          +'&qt='+obj[4].qt +'&qj='+obj[5].qj +'&qp='+obj[6].qp+'&qf='+obj[7].qf+'&style='+obj[8].style})
         else if(_this.data.style=='pstr')
-          wx.navigateTo({url:'../result/pstr?total='+JSON.stringify(res.data.sites[0].total)})
+          wx.navigateTo({url:'../result/pstr?total='+obj[0].total})
         else if(_this.data.style=='scl90')
-          wx.navigateTo({url:'../result/scl90?qutihua='+JSON.stringify(res.data.sites[0].qutihua)+'&qiangpo='+JSON.stringify(res.data.sites[1].qiangpo) +'&renjimingan='+JSON.stringify(res.data.sites[2].renjimingan) +'&yiyu='+ JSON.stringify(res.data.sites[3].yiyu)+'&jiaolv='
-          +JSON.stringify(res.data.sites[4].jiaolv)+'&didui='+JSON.stringify(res.data.sites[5].didui) +'&kongbu='+JSON.stringify(res.data.sites[6].kongbu)+'&pianzhi='+JSON.stringify(res.data.sites[7].pianzhi) + '&jinshenbing'+JSON.stringify(res.data.sites[8].jinshenbing) +'&qita='
-          + JSON.stringify(res.data.sites[9].qita) + '&total=' +JSON.stringify(res.data.sites[10].total)})
+          wx.navigateTo({url:'../result/scl90?qutihua='+obj[0].qutihua+'&qiangpo='+obj[1].qiangpo +'&renjimingan='+obj[2].renjimingan +'&yiyu='+ obj[3].yiyu+'&jiaolv='
+          +obj[4].jiaolv+'&didui='+obj[5].didui +'&kongbu='+obj[6].kongbu+'&pianzhi='+obj[7].pianzhi + '&jinshenbing'+obj[8].jinshenbing +'&qita='
+          + obj[9].qita + '&total=' +obj[10].total})
         else if(_this.data.style=='sds')
-          wx.navigateTo({url:'../result/sds?total='+JSON.stringify(res.data.sites[0].total)})
+          wx.navigateTo({url:'../result/sds?total='+obj[0].total})
       }
     });
   },

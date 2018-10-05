@@ -13,7 +13,6 @@ export default {
       'pages/contact/contact',
       'pages/scale/index',
       'pages/scale/scale',
-      'pages/scale/result',
       'pages/result/five',
       'pages/result/gses',
       'pages/result/sds',
@@ -66,6 +65,7 @@ export default {
 
 <style lang="less">
 @import './static/styles/index.less';
+@import './static/utils/weui.wxss';
 
 .container {
   height: 100%;
@@ -79,5 +79,8 @@ export default {
 
 body {
   font-size: 12px;
+}
+page{
+  background-color:#f6f5ec;
 }
 </style>

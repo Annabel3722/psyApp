@@ -91,17 +91,18 @@
 </template>
 
 <script>
+var wxCharts = require('../../static/utils/wxcharts.js');
 export default {
   config: {
     navigationBarTitleText: '您的测评结果'
   },
   data: {
-    changgui:4,
-    xianshi:53,
-    yanjiu: 34,
-    guanli: 24,
-    shehui: 13,
-    yishu: 24,
+    changgui:0,
+    xianshi:0,
+    yanjiu: 0,
+    guanli: 0,
+    shehui: 0,
+    yishu: 0,
     style:''
   },
   onLoad: function(options) {
@@ -112,169 +113,12 @@ export default {
       yanjiu: options.yanjiu,
       guanli: options.guanli,
       shehui: options.shehui,
-      yishu: options.yishu
+      yishu: options.yishu,
+      style: options.style
     })
     var arr = [this.data.changgui, this.data.xianshi, this.data.yanjiu, this.data.yishu, this.data.shehui, this.data.guanli]
     arr.sort()
-    
-
-    if(this.data.xianshi===arr[5] && this.data.yanjiu===arr[4] && this.data.yishu===arr[3])
-      this.setData({ style:'RIA' })
-    else if (this.data.xianshi === arr[5] && this.data.yanjiu === arr[4] && this.data.shehui === arr[3])
-      this.setData({style:'RIS'})
-    else if (this.data.xianshi === arr[5] && this.data.yanjiu === arr[4] && this.data.guanli === arr[3])
-      this.setData({ style:'RIE' })
-    else if (this.data.xianshi === arr[5] && this.data.yanjiu === arr[4] && this.data.changgui === arr[3])
-      this.setData({ style:'RIC' })
-    else if (this.data.xianshi === arr[5] && this.data.yishu === arr[4] && this.data.yanjiu === arr[3])
-      this.setData({ style:'RAI' })
-    else if (this.data.xianshi === arr[5] && this.data.shehui === arr[4] && this.data.guanli === arr[3])
-      this.setData({ style:'RSE' })
-    else if (this.data.xianshi === arr[5] && this.data.shehui === arr[4] && this.data.yanjiu === arr[3])
-      this.setData({ style:'RSI' })
-    else if (this.data.xianshi === arr[5] && this.data.guanli === arr[4] && this.data.changgui === arr[3])
-      this.setData({ style:'REC' })
-    else if (this.data.xianshi === arr[5] && this.data.guanli === arr[4] && this.data.yanjiu === arr[3])
-      this.setData({ style:'REI' })
-    else if (this.data.xianshi === arr[5] && this.data.guanli === arr[4] && this.data.shehui === arr[3])
-      this.setData({ style:'RES' })
-    else if (this.data.xianshi === arr[5] && this.data.changgui === arr[4] && this.data.yanjiu === arr[3])
-      this.setData({ style:'RCI' })
-    else if (this.data.xianshi === arr[5] && this.data.changgui === arr[4] && this.data.shehui === arr[3])
-      this.setData({ style:'RCS' })
-    else if (this.data.xianshi === arr[5] && this.data.changgui === arr[4] && this.data.guanli === arr[3])
-      this.setData({ style:'RCE' })
-    else if (this.data.yanjiu === arr[5] && this.data.yishu === arr[4] && this.data.shehui === arr[3])
-      this.setData({ style:'IAS' })
-    else if (this.data.yanjiu === arr[5] && this.data.yishu === arr[4] && this.data.xianshi === arr[3])
-      this.setData({ style:'IAR' })
-    else if (this.data.yanjiu === arr[5] && this.data.shehui === arr[4] && this.data.guanli === arr[3])
-      this.setData({ style:'ISE' })
-    else if (this.data.yanjiu === arr[5] && this.data.shehui === arr[4] && this.data.changgui === arr[3])
-      this.setData({ style:'ISC' })
-    else if (this.data.yanjiu === arr[5] && this.data.shehui === arr[4] && this.data.xianshi === arr[3])
-      this.setData({ style:'ISR' })
-    else if (this.data.yanjiu === arr[5] && this.data.shehui === arr[4] && this.data.yishu === arr[3])
-      this.setData({ style:'ISA' })
-    else if (this.data.yanjiu === arr[5] && this.data.guanli === arr[4] && this.data.shehui === arr[3])
-      this.setData({ style:'IES' })
-    else if (this.data.yanjiu === arr[5] && this.data.guanli === arr[4] && this.data.changgui === arr[3])
-      this.setData({ style:'IEC' })
-    else if (this.data.yanjiu === arr[5] && this.data.changgui === arr[4] && this.data.xianshi === arr[3])
-      this.setData({ style:'ICR' })
-    else if (this.data.yanjiu === arr[5] && this.data.xianshi === arr[4] && this.data.yishu === arr[3])
-      this.setData({ style:'IRA' })
-    else if (this.data.yanjiu === arr[5] && this.data.xianshi === arr[4] && this.data.shehui === arr[3])
-      this.setData({ style:'IRS' })
-    else if (this.data.yanjiu === arr[5] && this.data.xianshi === arr[4] && this.data.guanli === arr[3])
-      this.setData({ style:'IRE' })
-    else if (this.data.yanjiu === arr[5] && this.data.xianshi === arr[4] && this.data.changgui === arr[3])
-      this.setData({ style:'IRC' })
-    else if (this.data.yanjiu === arr[5] && this.data.xianshi === arr[4] && this.data.yishu === arr[3])
-      this.setData({ style:'IRA' })
-    else if (this.data.changgui === arr[5] && this.data.xianshi === arr[4] && this.data.yanjiu === arr[3])
-      this.setData({ style:'CRI' })
-    else if (this.data.changgui === arr[5] && this.data.xianshi === arr[4] && this.data.shehui === arr[3])
-      this.setData({ style:'CRS' })
-    else if (this.data.changgui === arr[5] && this.data.xianshi === arr[4] && this.data.guanli === arr[3])
-      this.setData({ style:'CRE' })
-    else if (this.data.changgui === arr[5] && this.data.yanjiu === arr[4] && this.data.shehui === arr[3])
-      this.setData({ style:'CIS' })
-    else if (this.data.changgui === arr[5] && this.data.yanjiu === arr[4] && this.data.guanli === arr[3])
-      this.setData({ style:'CIE' })
-    else if (this.data.changgui === arr[5] && this.data.yanjiu === arr[4] && this.data.xianshi === arr[3])
-      this.setData({ style:'CIR' })
-    else if (this.data.changgui === arr[5] && this.data.shehui === arr[4] && this.data.guanli === arr[3])
-      this.setData({ style:'CSE' })
-    else if (this.data.changgui === arr[5] && this.data.shehui === arr[4] && this.data.xianshi === arr[3])
-      this.setData({ style:'CSR' })
-    else if (this.data.changgui === arr[5] && this.data.shehui === arr[4] && this.data.yishu === arr[3])
-      this.setData({ style:'CSA' })
-    else if (this.data.changgui === arr[5] && this.data.guanli === arr[4] && this.data.xianshi === arr[3])
-      this.setData({ style:'CER' })
-    else if (this.data.changgui === arr[5] && this.data.guanli === arr[4] && this.data.shehui === arr[3])
-      this.setData({ style:'CES' })
-    else if (this.data.guanli === arr[5] && this.data.changgui === arr[4] && this.data.yanjiu === arr[3])
-      this.setData({ style:'ECI' })
-    else if (this.data.guanli === arr[5] && this.data.changgui === arr[4] && this.data.shehui === arr[3])
-      this.setData({ style:'ECS' })
-    else if (this.data.guanli === arr[5] && this.data.xianshi === arr[4] && this.data.yanjiu === arr[3])
-      this.setData({ style:'ERI' })
-    else if (this.data.guanli === arr[5] && this.data.xianshi === arr[4] && this.data.shehui === arr[3])
-      this.setData({ style:'ERS' })
-    else if (this.data.guanli === arr[5] && this.data.xianshi === arr[4] && this.data.changgui === arr[3])
-      this.setData({ style:'ERC' })
-    else if (this.data.guanli === arr[5] && this.data.yanjiu === arr[4] && this.data.xianshi === arr[3])
-      this.setData({ style:'EIR' })
-    else if (this.data.guanli === arr[5] && this.data.yanjiu === arr[4] && this.data.changgui === arr[3])
-      this.setData({ style:'EIC' })
-    else if (this.data.guanli === arr[5] && this.data.yanjiu === arr[4] && this.data.shehui === arr[3])
-      this.setData({ style:'EIS' })
-    else if (this.data.guanli === arr[5] && this.data.yishu === arr[4] && this.data.shehui === arr[3])
-      this.setData({ style:'EAS' })
-    else if (this.data.guanli === arr[5] && this.data.yishu === arr[4] && this.data.xianshi === arr[3])
-      this.setData({ style:'EAR' })
-    else if (this.data.guanli === arr[5] && this.data.shehui === arr[4] && this.data.changgui === arr[3])
-      this.setData({ style:'ESC' })
-    else if (this.data.guanli === arr[5] && this.data.shehui === arr[4] && this.data.xianshi === arr[3])
-      this.setData({ style:'ESR' })
-    else if (this.data.guanli === arr[5] && this.data.shehui === arr[4] && this.data.yanjiu === arr[3])
-      this.setData({ style:'ESI' })
-    else if (this.data.guanli === arr[5] && this.data.shehui === arr[4] && this.data.yishu === arr[3])
-      this.setData({ style:'ESA' })
-    else if (this.data.yishu === arr[5] && this.data.shehui === arr[4] && this.data.guanli === arr[3])
-      this.setData({ style:'ASE' })
-    else if (this.data.yishu === arr[5] && this.data.shehui === arr[4] && this.data.yanjiu === arr[3])
-      this.setData({ style:'ASI' })
-    else if (this.data.yishu === arr[5] && this.data.shehui === arr[4] && this.data.guanli === arr[3])
-      this.setData({ style:'ASE' })
-    else if (this.data.yishu === arr[5] && this.data.guanli === arr[4] && this.data.xianshi === arr[3])
-      this.setData({ style:'AER' })
-    else if (this.data.yishu === arr[5] && this.data.guanli === arr[4] && this.data.shehui === arr[3])
-      this.setData({ style:'AES' })
-    else if (this.data.yishu === arr[5] && this.data.yanjiu === arr[4] && this.data.shehui === arr[3])
-      this.setData({ style:'AIS' })
-    else if (this.data.yishu === arr[5] && this.data.yanjiu === arr[4] && this.data.guanli === arr[3])
-      this.setData({ style:'AIE' })
-    else if (this.data.yishu === arr[5] && this.data.yanjiu === arr[4] && this.data.xianshi === arr[3])
-      this.setData({ style:'AIR' })
-    else if (this.data.shehui === arr[5] && this.data.guanli === arr[4] && this.data.changgui === arr[3])
-      this.setData({ style:'SEC' })
-    else if (this.data.shehui === arr[5] && this.data.guanli === arr[4] && this.data.xianshi === arr[3])
-      this.setData({ style:'SER' })
-    else if (this.data.shehui === arr[5] && this.data.guanli === arr[4] && this.data.yanjiu === arr[3])
-      this.setData({ style:'SEI' })
-    else if (this.data.shehui === arr[5] && this.data.guanli === arr[4] && this.data.yishu === arr[3])
-      this.setData({ style:'SEA' })
-    else if (this.data.shehui === arr[5] && this.data.changgui === arr[4] && this.data.guanli === arr[3])
-      this.setData({ style:'SCE' })
-    else if (this.data.shehui === arr[5] && this.data.xianshi === arr[4] && this.data.yanjiu === arr[3])
-      this.setData({ style:'SRI' })
-    else if (this.data.shehui === arr[5] && this.data.xianshi === arr[4] && this.data.guanli === arr[3])
-      this.setData({ style:'SRE' })
-    else if (this.data.shehui === arr[5] && this.data.xianshi === arr[4] && this.data.changgui === arr[3])
-      this.setData({ style:'SRC' })
-    else if (this.data.shehui === arr[5] && this.data.yanjiu === arr[4] && this.data.yishu === arr[3])
-      this.setData({ style:'SIA' })
-    else if (this.data.shehui === arr[5] && this.data.yanjiu === arr[4] && this.data.guanli === arr[3])
-      this.setData({ style:'SIE' })
-    else if (this.data.shehui === arr[5] && this.data.yanjiu === arr[4] && this.data.changgui === arr[3])
-      this.setData({ style:'SIC' })
-    else if (this.data.shehui === arr[5] && this.data.yanjiu === arr[4] && this.data.xianshi === arr[3])
-      this.setData({ style:'SIR' })
-    else if (this.data.shehui === arr[5])
-      this.setData({ style: 'S' })
-    else if (this.data.yanjiu ===arr[5])
-      this.setData({ style: 'I' })
-    else if (this.data.xianshi === arr[5])
-      this.setData({ style: 'R' })
-    else if (this.data.yishu === arr[5])
-      this.setData({ style: 'A' })
-    else if (this.data.guanli === arr[5])
-      this.setData({ style: 'E' })
-    else if (this.data.changgui === arr[5])
-      this.setData({ style: 'C' })
-
+  
     new wxCharts({
       canvasId: 'radarCanvas',
       type: 'radar',
