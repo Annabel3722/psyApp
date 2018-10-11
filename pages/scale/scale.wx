@@ -98,6 +98,7 @@ export default {
     this.setData({
       [i]: e.detail.value[0]
     });
+    setTimeout(()=>{_this.nextPage()},500)
     console.log(_this.data.total);
   },
   //滑动开始事件
