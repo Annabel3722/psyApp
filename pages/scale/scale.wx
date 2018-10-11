@@ -70,20 +70,24 @@ export default {
   lastPage: function(e) {
     var _this = this;
     var s = this.data.site - 1;
+    if(s >= 0){
     this.setData({
       answer: _this.data.items[s],
       question: _this.data.questions[s],
       site: s
     });
+    }
   },
   nextPage: function(e) {
     var _this = this;
     var s = this.data.site + 1;
+    if(s < _this.data.questions.length){
     this.setData({
       answer: _this.data.items[s],
       question: _this.data.questions[s],
       site: s
     });
+    }
   },
   thisPage: function(e) {
     this.setData({

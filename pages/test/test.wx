@@ -4,7 +4,7 @@
     <ui-accordion bindchange="slide" wx:for="{{ accordion }}" wx:key="item.title" header-height="50">
       <view slot="header">
       <ui-row height="45" border-bottom class="title">
-        <ui-col vertical-align="middle" align="left" space-left="10">
+        <ui-col vertical-align="middle" align="left" space-left="10" style="font-weight:bold">
           {{ item.title }}
         </ui-col>
         <ui-col vertical-align="middle" align="center" width="30"></ui-col>
