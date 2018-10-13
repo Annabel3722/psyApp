@@ -155,7 +155,7 @@ export default {
           wx.navigateTo({url:'../result/pstr?total='+obj[0].total})
         else if(_this.data.style=='scl90')
           wx.navigateTo({url:'../result/scl90?qutihua='+obj[0].qutihua+'&qiangpo='+obj[1].qiangpo +'&renjimingan='+obj[2].renjimingan +'&yiyu='+ obj[3].yiyu+'&jiaolv='
-          +obj[4].jiaolv+'&didui='+obj[5].didui +'&kongbu='+obj[6].kongbu+'&pianzhi='+obj[7].pianzhi + '&jinshenbing'+obj[8].jinshenbing +'&qita='
+          +obj[4].jiaolv+'&didui='+obj[5].didui +'&kongbu='+obj[6].kongbu+'&pianzhi='+obj[7].pianzhi + '&jinshenbing='+obj[8].jinshenbing +'&qita='
           + obj[9].qita + '&total=' +obj[10].total})
         else if(_this.data.style=='sds')
           wx.navigateTo({url:'../result/sds?total='+obj[0].total})
