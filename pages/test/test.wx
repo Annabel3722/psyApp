@@ -81,6 +81,27 @@ export default {
             path:"../scale/index?style=gses"
           }
         ]
+      },
+      {
+        title:"创伤心理自评",
+        content:[
+          {
+            title:"创伤后应激障碍自评量表",
+            path:"../scale/index?style=ptsdss"
+          },
+          {
+            title:"PTSD自评量表",
+            path:"../scale/index?style=pclc"
+          },
+          {
+            title:"创伤后压力症候群量表",
+            path:"../scale/index?style=pcl5"
+          },
+          {
+            title:"事件冲击量表",
+            path:"../scale/index?style=iesr"
+          }
+        ]
       }
     ]
   },
