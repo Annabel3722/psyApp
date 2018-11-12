@@ -16,7 +16,7 @@ var config = {
     //问题列表
     questionsUrl: `https://${host}/scale/`,
 
-    scaleUrl: `https://psytest.psyannabel.cn/`,
+    scaleUrl: `https://app.psyannabel.cn/psy`,
   },
 
 };

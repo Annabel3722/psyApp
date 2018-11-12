@@ -49,7 +49,7 @@ export default {
     question: [],
     answer: [],
     site: 0,
-    total: { name: "test" },
+    total: { },
     style: "",
     NAV_HEIGHT: wx.STATUS_BAR_HEIGHT + wx.DEFAULT_HEADER_HEIGHT + "px",
     showMask1: true,
@@ -126,7 +126,7 @@ export default {
     var _this = this;
     console.log(_this.data.total);
     wx.request({
-      url: config.service.scaleUrl + _this.data.style + "/m",
+      url: config.service.scaleUrl + _this.data.style + "/",
       data: _this.data.total,
       method: "POST",
       header: {
@@ -134,7 +134,7 @@ export default {
       },
       success(res) {
         console.log(res.data);
-        var obj=res.data.sites
+        var obj=res.data
         if(_this.data.style=='five')
           wx.navigateTo({url: '../result/five?f1='+obj[0].f1+'&f2='+obj[1].f2+'&f3='+obj[2].f3
           +'&f4='+obj[3].f4+'&f5='+obj[4].f5})
@@ -158,6 +158,14 @@ export default {
           +obj[4].jiaolv+'&didui='+obj[5].didui +'&kongbu='+obj[6].kongbu+'&pianzhi='+obj[7].pianzhi + '&jinshenbing='+obj[8].jinshenbing +'&qita='
           + obj[9].qita + '&total=' +obj[10].total})
         else if(_this.data.style=='sds')
+          wx.navigateTo({url:'../result/sds?total='+obj[0].total})
+        else if(_this.data.style=='iesr')
+          wx.navigateTo({url:'../result/sds?total='+obj[0].total})
+        else if(_this.data.style=='pclc')
+          wx.navigateTo({url:'../result/sds?total='+obj[0].total})
+        else if(_this.data.style=='ptsdss')
+          wx.navigateTo({url:'../result/sds?total='+obj[0].total})
+        else if(_this.data.style=='pcl5')
           wx.navigateTo({url:'../result/sds?total='+obj[0].total})
       }
     });
