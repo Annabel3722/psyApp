@@ -1,0 +1,8 @@
+{
+  "usingComponents": {
+    "ui-mask": "../../packages/touchui-wx-components/ui-mask/dist/index",
+    "ui-divider": "../../packages/touchui-wx-components/ui-divider/dist/index",
+    "ui-check-list": "../../packages/touchui-wx-components/ui-check-list/dist/index"
+  },
+  "navigationBarTitleText": "正在测试"
+}

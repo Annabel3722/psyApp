@@ -112,6 +112,9 @@
             <text>\n\n</text>秘书、办公室人员、记事员、会计、行政助理、图书馆管理员、出纳员、打字员、投资分析员。
     </view>
 </view>
+<view style="padding:0px 10px;margin-top:30px;">
+      <ad unit-id="adunit-bc6c61b6d0ef96e0" bindload="loadedAd" binderror="loadedError"></ad>
+    </view>
   </view>
 </template>
 

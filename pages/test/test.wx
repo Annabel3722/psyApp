@@ -1,6 +1,6 @@
 <template>
   <view>
-    <view class="weui-cells__title" style='font-color:#1d1626;font-size:14px'>这里是心理测试列表，请到首页登录后使用</view>
+    <view class="weui-cells__title" style="color:#123">这里是心理测试列表，请到首页登录后使用</view>
     <ui-accordion bindchange="slide" wx:for="{{ accordion }}" wx:key="item.title" header-height="50">
       <view slot="header">
       <ui-row height="45" border-bottom class="title">
@@ -12,12 +12,15 @@
       </view>
       <view slot="content">
       <ui-row height="40" wx:for="{{ item.content }}" wx:for-item="item2" wx:key="item2.path" class='content'>
-          <ui-col bindtap="navTo" data-Path="{{ item2.path }}" vertical-align="middle" align="left" space-left="10">
+          <ui-col bindtap="navTo" data-Title="{{ item2.title }}" data-Path="{{ item2.path }}" vertical-align="middle" align="left" space-left="10">
             {{ item2.title }}
           </ui-col>
       </ui-row>
       </view>
     </ui-accordion>
+    <view class="weui-cells__title" style="color:#666">使用须知:</view>
+    <view class="weui-cells__title" style="color:#666">1. 为了保证测试结果的正确性,我们建议您如实选择</view>
+    <view class="weui-cells__title" style="color:#666">2. 为了保护您的隐私,我们不会存储您的选项及任何个人信息</view>
   </view>
 </template>
 
@@ -106,6 +109,7 @@ export default {
     ]
   },
   navTo(e){
+    wx.setStorageSync('name', e.currentTarget.dataset.title);
     wx.navigateTo({
       url:e.currentTarget.dataset.path,
     })

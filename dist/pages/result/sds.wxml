@@ -1,0 +1,18 @@
+<view>
+  <view style="box-shadow: 0 0 10px #d0d0d0;margin-top: 20px;" class="ui-row">
+    <view class="ui-col ui-col-align-left align-left" style="">
+      <view class="ui-col-content align-left">
+        <view class="weui-cells__title">您的得分为{{ total }}。
+          <view wx:if="{{total < 53 }}"> 您没有抑郁症状。</view>
+          <view wx:elif="{{total >= 53 && total <= 62 }}"> 您有轻度抑郁。</view>
+          <view wx:elif="{{total > 62 && total < 73 }}"> 您有中度抑郁。</view>
+          <view wx:elif="{{total >= 73 }}"> 您有重度抑郁。</view>
+          该测评仅供参考，如有疑问，请向专业咨询师寻求帮助。
+        </view>
+      </view>
+    </view>
+  </view>
+  <view style="padding:0px 10px;margin-top:30px;">
+    <ad unit-id="adunit-bc6c61b6d0ef96e0" bindload="loadedAd" binderror="loadedError"></ad>
+  </view>
+</view>

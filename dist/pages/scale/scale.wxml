@@ -1,0 +1,46 @@
+<view bindtouchstart="touchStart" bindtouchend="touchEnd" class="page">
+  <ui-mask show="{{showMask1}}" custom-style="{{customSyle}}" _pid="{{_pid}}">
+    <view class="finger-swiper" data-show="{{false}}" bindtap="handleShowMask">
+      <view class="ui-row" style="">
+        <view class="ui-col" style="padding-right: 10px;">
+          <view class="ui-col-content">
+            <span type="one-finger-swipe-lef" size="36" color="#fff" align="right" class="ui-icon icon-one-finger-swipe-lef" style="color: #fff;font-size: 36px;"></span>
+          </view>
+        </view>
+        <view class="ui-col" style="padding-left: 10px;">
+          <view class="ui-col-content">
+            <span type="one-finger-swipe-rig" size="36" color="#fff" align="left" class="ui-icon icon-one-finger-swipe-rig" style="color: #fff;font-size: 36px;"></span>
+          </view>
+        </view>
+      </view>
+      <view>左右滑屏，查看上/下一道题</view>
+      <view class="know">我知道了</view>
+    </view>
+  </ui-mask>
+  <view hidden="{{ !show_tips }}" class="tm-tips">请先选择选项!</view>
+  <form bindsubmit="formSubmit">
+    <view class="weui-cells__title" style="text-align:center;">({{ current_index+1 }}/{{ questions.length }})</view>
+    <ui-divider color="#3399ff" _pid="{{_pid}}">{{ name }}</ui-divider>
+    <view class="weui-cells__title">{{ current_question }}</view>
+    <wxs src="./mChanger.wxs" module="mChanger"></wxs>
+    <radio-group name="c{{current_index+1}}">
+      <label for="c{{ current_index+1 }}" name="c{{ current_index+1 }}">
+        <ui-check-list color="#00a6ac" max="1" label-position="right" options="{{ current_item }}" type="circle" value="{{current_item}}" id="c{{ current_index+1 }}" name="c{{ current_index+1 }}" bindchange="radioChange" _pid="{{_pid}}">
+        </ui-check-list>
+      </label>
+
+      <text decode="{{true}}">\n</text>
+      <view>
+        <progress percent="{{(current_index+1)/questions.length*100}}" active-color="#008792">
+        </progress></view>
+      <view wx:if="{{(current_index+1)==questions.length}}">
+        <button type="default" style="margin:2em;background-color:#2585a6;color:white" form-type="submit">提交测试</button>
+      </view>
+      <view wx:else=""></view>
+    </radio-group>
+  </form>
+  <view hidden="{{current_index == questions.length -1 }}" class="ui-row" style="margin-top: 20px;">
+    <button bindtap="lastPage" class="ui-col" style="margin-right:5px;align-items:center;justify-content:center;">上一题</button>
+    <button bindtap="nextPage" class="ui-col" style="margin-left:5px;align-items:center;justify-content:center;">下一题</button>
+  </view>
+</view>

@@ -1,7 +1,7 @@
 <template>
   <view bindtouchstart='touchStart' bindtouchend="touchEnd" class="page">
     <ui-mask show="{{showMask1}}" custom-style="{{customSyle}}" >
-      <view class="finger-swiper" data-show="{{false}}"  bindtap="handleShowMask1">
+      <view class="finger-swiper" data-show="{{false}}"  bindtap="handleShowMask">
         <ui-row>
           <ui-col space-right="10">
             <ui-icon type="one-finger-swipe-lef" size="36" color="#fff" align="right"></ui-icon>
@@ -14,28 +14,32 @@
         <view class="know">我知道了</view>
       </view>      
     </ui-mask>
-    
+    <view hidden="{{ !show_tips }}" class="tm-tips">请先选择选项!</view>
     <form bindsubmit='formSubmit'>
-    <view class="weui-cells__title" style='font-color:#1d1626;font-size:14px'>{{ question }}</view>
+    <view class="weui-cells__title" style="text-align:center;">({{ current_index+1 }}/{{ questions.length }})</view>
+    <ui-divider color="#3399ff">{{ name }}</ui-divider>
+    <view class="weui-cells__title">{{ current_question }}</view>
     <wxs src="./mChanger.wxs" module="mChanger"></wxs>
-    <radio-group  name="c{{site+1}}">
-    <label for="c{{ site+1 }}" name="c{{ site+1 }}" >
-    <ui-check-list color="#00a6ac"  max="1" label-position="right" options="{{ answer }}" type="circle" value="{{ answer }}" id='c{{ site+1 }}' name="c{{ site+1 }}" bindchange="radioChange">
+    <radio-group  name="c{{current_index+1}}">
+    <label for="c{{ current_index+1 }}" name="c{{ current_index+1 }}" >
+    <ui-check-list color="#00a6ac"  max="1" label-position="right" options="{{ current_item }}" type="circle" value="{{current_item}}" id='c{{ current_index+1 }}' name="c{{ current_index+1 }}" bindchange="radioChange">
     </ui-check-list>
     </label>
     
     <text decode="{{true}}">\n</text>
     <view>
-    <progress percent="{{(site+1)/questions.length*100}}"  />
+    <progress percent="{{(current_index+1)/questions.length*100}}"  />
     </view>
-    <view  wx:if="{{(site+1)==questions.length}}">
+    <view  wx:if="{{(current_index+1)==questions.length}}">
       <button type='default' style='margin:2em;background-color:#2585a6;color:white' form-type='submit' >提交测试</button>
     </view>
     <view  wx:else></view>
     </radio-group>
     </form>
-    
-    
+    <view hidden="{{current_index == questions.length -1 }}" class="ui-row" style="margin-top: 20px;">
+      <button bindtap="lastPage" class="ui-col" style="margin-right:5px;align-items:center;justify-content:center;">上一题</button>
+      <button bindtap="nextPage" class="ui-col" style="margin-left:5px;align-items:center;justify-content:center;">下一题</button>
+    </view>
   </view>
 </template>
 
@@ -46,12 +50,19 @@ export default {
     navigationBarTitleText: "正在测试"
   },
   data: {
-    question: [],
-    answer: [],
-    site: 0,
-    total: { },
+    // 是否显示提示
+    show_tips: false,
+    // 是否勾选选项
+    selected: false,
+    // 量表名称
+    name: "",
+    // 当前问题
+    current_question: [],
+    // 当前问题选项
+    current_item: [],
+    // 当前问题索引
+    current_index: 0,
     style: "",
-    NAV_HEIGHT: wx.STATUS_BAR_HEIGHT + wx.DEFAULT_HEADER_HEIGHT + "px",
     showMask1: true,
     customSyle: {
       background: "rgba(0, 0, 0, 0.8)",
@@ -60,32 +71,50 @@ export default {
       "justify-content": "center"
     }
   },
-  handleShowMask1(e) {
+  handleShowMask(e) {
     console.log(e);
     let show = e.currentTarget.dataset.show;
     this.setData({
       showMask1: show
     });
   },
+  judgePage: function(e) {
+    const _this = this;
+    if( !_this.data.selected ) {
+      _this.setData({show_tips:true})
+      return false;
+    } else {
+      return true;
+    }
+  },
   lastPage: function(e) {
     var _this = this;
-    var s = this.data.site - 1;
+    var s = this.data.current_index - 1;
     if(s >= 0){
     this.setData({
-      answer: _this.data.items[s],
-      question: _this.data.questions[s],
-      site: s
+      selected: false,
+      show_tips: false,
+      current_item: _this.data.items[s],
+      current_question: _this.data.questions[s],
+      current_index: s
     });
     }
   },
   nextPage: function(e) {
     var _this = this;
-    var s = this.data.site + 1;
+    // 如果没有选择,则截断
+    if( !_this.judgePage() ){
+      console.log('试图截断页面跳转');
+      return ;
+    }
+    var s = this.data.current_index + 1;
     if(s < _this.data.questions.length){
     this.setData({
-      answer: _this.data.items[s],
-      question: _this.data.questions[s],
-      site: s
+      selected: false,
+      show_tips: false,
+      current_item: _this.data.items[s],
+      current_question: _this.data.questions[s],
+      current_index: s
     });
     }
   },
@@ -96,13 +125,14 @@ export default {
   },
   radioChange: function(e) {
     var _this = this;
-    var s = _this.data.site + 1;
+    var s = _this.data.current_index + 1;
     var i = "total.c" + s;
     console.log(e.detail.value[0]);
     this.setData({
-      [i]: e.detail.value[0]
+      [i]: e.detail.value[0],
+      selected: true, 
     });
-    setTimeout(()=>{_this.nextPage()},500)
+    setTimeout(()=>{_this.nextPage()},400)
     console.log(_this.data.total);
   },
   //滑动开始事件
@@ -124,54 +154,55 @@ export default {
   },
   formSubmit: function(e) {
     var _this = this;
-    console.log(_this.data.total);
     wx.request({
-      url: config.service.scaleUrl + _this.data.style + "/",
+      url: config.service.scaleUrl + "/" + _this.data.style + "/",
       data: _this.data.total,
       method: "POST",
       header: {
         "content-type": "application/x-www-form-urlencoded"
       },
       success(res) {
-        console.log(res.data);
-        var obj=res.data
+        console.log("服务器返回的请求:",res.data);
+        const obj = JSON.parse(res.data);
         if(_this.data.style=='five')
-          wx.navigateTo({url: '../result/five?f1='+obj[0].f1+'&f2='+obj[1].f2+'&f3='+obj[2].f3
-          +'&f4='+obj[3].f4+'&f5='+obj[4].f5})
+          wx.navigateTo({url: '../result/five?f1='+obj.f1+'&f2='+obj.f2+'&f3='+obj.f3
+          +'&f4='+obj.f4+'&f5='+obj.f5})
         else if(_this.data.style=='bai')
-          wx.navigateTo({url:'../result/bai?total='+obj[0].total})
+          wx.navigateTo({url:'../result/bai?total='+obj.total})
         else if(_this.data.style=='gses')
-          wx.navigateTo({url:'../result/gses?total='+obj[0].total})
+          wx.navigateTo({url:'../result/gses?total='+obj.total})
         else if(_this.data.style=='cdrisc')
-          wx.navigateTo({url:'../result/cdrisc?jianren='+obj[0].jianren+'&jianrene='+obj[1].jianrene+'&liliang='+obj[2].liliang
-          +'&liliange='+obj[3].liliange+'&leguan='+obj[4].leguan+'&leguane='+obj[5].leguane})
+          wx.navigateTo({url:'../result/cdrisc?jianren='+obj.jianren+'&jianrene='+obj.jianrene+'&liliang='+obj.liliang
+          +'&liliange='+obj.liliange+'&leguan='+obj.leguan+'&leguane='+obj.leguane})
         else if(_this.data.style=='holland')
-          wx.navigateTo({url:'../result/holland?xianshi='+obj[0].xianshi+'&yanjiu='+obj[1].yanjiu+'&yishu='+obj[2].yishu+'&shehui='+obj[3].shehui
-          +'&guanli='+obj[4].guanli+'&changgui='+obj[5].changgui+'&style='+obj[6].style})
+          wx.navigateTo({url:'../result/holland?xianshi='+obj.xianshi+'&yanjiu='+obj.yanjiu+'&yishu='+obj.yishu+'&shehui='+obj.shehui
+          +'&guanli='+obj.guanli+'&changgui='+obj.changgui+'&style='+obj.style})
         else if(_this.data.style=='mbti')
-          wx.navigateTo({url:'../result/mbti?qe='+obj[0].qe + '&qi='+obj[1].qi +'&qn='+obj[2].qn+'&qs='+obj[3].qs
-          +'&qt='+obj[4].qt +'&qj='+obj[5].qj +'&qp='+obj[6].qp+'&qf='+obj[7].qf+'&style='+obj[8].style})
+          wx.navigateTo({url:'../result/mbti?qe='+obj.qe + '&qi='+obj.qi +'&qn='+obj.qn+'&qs='+obj.qs
+          +'&qt='+obj.qt +'&qj='+obj.qj +'&qp='+obj.qp+'&qf='+obj.qf+'&style='+obj.style})
         else if(_this.data.style=='pstr')
-          wx.navigateTo({url:'../result/pstr?total='+obj[0].total})
+          wx.navigateTo({url:'../result/pstr?total='+obj.total})
         else if(_this.data.style=='scl90')
-          wx.navigateTo({url:'../result/scl90?qutihua='+obj[0].qutihua+'&qiangpo='+obj[1].qiangpo +'&renjimingan='+obj[2].renjimingan +'&yiyu='+ obj[3].yiyu+'&jiaolv='
-          +obj[4].jiaolv+'&didui='+obj[5].didui +'&kongbu='+obj[6].kongbu+'&pianzhi='+obj[7].pianzhi + '&jinshenbing='+obj[8].jinshenbing +'&qita='
-          + obj[9].qita + '&total=' +obj[10].total})
+          wx.navigateTo({url:'../result/scl90?qutihua='+obj.qutihua+'&qiangpo='+obj.qiangpo +'&renjimingan='+obj.renjimingan +'&yiyu='+ obj.yiyu+'&jiaolv='
+          +obj.jiaolv+'&didui='+obj.didui +'&kongbu='+obj.kongbu+'&pianzhi='+obj.pianzhi + '&jinshenbing='+obj.jinshenbing +'&qita='
+          + obj.qita + '&total=' +obj.total})
         else if(_this.data.style=='sds')
-          wx.navigateTo({url:'../result/sds?total='+obj[0].total})
+          wx.navigateTo({url:'../result/sds?total='+obj.total})
         else if(_this.data.style=='iesr')
-          wx.navigateTo({url:'../result/sds?total='+obj[0].total})
+          wx.navigateTo({url:'../result/sds?total='+obj.total})
         else if(_this.data.style=='pclc')
-          wx.navigateTo({url:'../result/sds?total='+obj[0].total})
+          wx.navigateTo({url:'../result/sds?total='+obj.total})
         else if(_this.data.style=='ptsdss')
-          wx.navigateTo({url:'../result/sds?total='+obj[0].total})
+          wx.navigateTo({url:'../result/sds?total='+obj.total})
         else if(_this.data.style=='pcl5')
-          wx.navigateTo({url:'../result/sds?total='+obj[0].total})
+          wx.navigateTo({url:'../result/sds?total='+obj.total})
       }
     });
   },
   onLoad: function(options) {
     var _this = this;
+    // 获取量表名称
+    const name = wx.getStorageSync('name')
     wx.request({
       url: config.service.questionsUrl + options.style + ".html",
       method: "GET",
@@ -179,10 +210,11 @@ export default {
         _this.setData({
           questions: res.data.sites[2].questions,
           items: res.data.sites[3].items,
-          question: res.data.sites[2].questions[0],
-          answer: res.data.sites[3].items[0],
+          current_question: res.data.sites[2].questions[0],
+          current_item: res.data.sites[3].items[0],
           length: res.data.sites[2].questions.length,
-          style: options.style
+          style: options.style,
+          name: name,
         });
       }
     });
@@ -226,6 +258,14 @@ export default {
 </script>
 
 <style lang="less">
+.tm-tips {
+  height:30px;
+  background-color:#f00;
+  color:#fff;
+  align-items:center;
+  justify-content:center;
+  display:flex;
+}
 .page {
   height: 100vh;
   padding: 10px;

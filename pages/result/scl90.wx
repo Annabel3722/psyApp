@@ -83,51 +83,52 @@
         <view class="weui-cell__ft">{{ total }}分</view>
     </view>
 </view>
-
 <view wx:if="{{ total > 250 }}" style='font-color:red;font-size:14px;'>您处于重度症状，请及时寻找咨询老师</view>
 <view wx:elif="{{ total > 200 }}" style='font-color:red;font-size:14px;'>您处于中度症状，详细情况可以寻找咨询老师</view>
 <view wx:elif="{{ total > 160 }}" style='font-color:red;font-size:14px;'>您处于轻度症状，详细情况可以寻找咨询老师</view>
 <view wx:else></view>
-
+<view style="padding:0px 10px;margin-top:30px;">
+      <ad unit-id="adunit-bc6c61b6d0ef96e0" bindload="loadedAd" binderror="loadedError"></ad>
+    </view>
   </view>
 </template>
 
 <script>
 export default {
   config: {
-    navigationBarTitleText: '您的测评结果'
+    navigationBarTitleText: "您的测评结果"
   },
   data: {
-    qutihua:0,
-    qiangpo:0,
-    renjimingan:0,
-    yiyu:0,
-    jiaolv:0,
-    didui:0,
-    kongbu:0,
-    pianzhi:0,
-    jinshenbing:0,
-    qita:0,
-    total:0
+    qutihua: 0,
+    qiangpo: 0,
+    renjimingan: 0,
+    yiyu: 0,
+    jiaolv: 0,
+    didui: 0,
+    kongbu: 0,
+    pianzhi: 0,
+    jinshenbing: 0,
+    qita: 0,
+    total: 0
   },
   onLoad: function(options) {
-    console.log(options)
-    var _this=this;
+    console.log(options);
+    var _this = this;
     _this.setData({
       qutihua: options.qutihua,
       qiangpo: options.qiangpo,
       renjimingan: options.renjimingan,
       yiyu: options.yiyu,
       jiaolv: options.jiaolv,
-      didui:options.didui,
+      didui: options.didui,
       kongbu: options.kongbu,
       pianzhi: options.pianzhi,
       jinshenbing: options.jinshenbing,
       qita: options.qita,
       total: options.total
-    })
+    });
   }
-}
+};
 </script>
 
 <style lang="less">

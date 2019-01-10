@@ -1,0 +1,51 @@
+/* 1像素解决方案 */
+/*
+ * 清除1px
+ */
+/*
+ * 清除浮动
+ */
+/*
+ * mobile
+ */
+/*
+ * 1px
+ */
+/*
+ * text
+ */
+/* 垂直居中 */
+/* 水平居中 */
+/* 水平垂直居中 */
+/* 超出部分出省略号 */
+/* 多行文本超出部分省略号 */
+.tm-tips {
+  height: 30px;
+  background-color: #f00;
+  color: #fff;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+}
+.page {
+  height: 100vh;
+  padding: 10px;
+}
+.weui-cells__title {
+  margin: 1em;
+  color: black;
+  font-size: 14px;
+}
+.mask1 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.finger-swiper {
+  color: #fff;
+  text-align: center;
+}
+.know {
+  color: #d6545d;
+  text-decoration: underline;
+}

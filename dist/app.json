@@ -1,0 +1,49 @@
+{
+  "pages": [
+    "pages/home/index",
+    "pages/test/test",
+    "pages/contact/contact",
+    "pages/scale/index",
+    "pages/scale/scale",
+    "pages/result/five",
+    "pages/result/gses",
+    "pages/result/sds",
+    "pages/result/pstr",
+    "pages/result/holland",
+    "pages/result/cdrisc",
+    "pages/result/bai",
+    "pages/result/scl90",
+    "pages/result/mbti"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "backgroundColor": "#008792",
+    "navigationBarBackgroundColor": "#008792",
+    "navigationBarTextStyle": "white"
+  },
+  "tabBar": {
+    "color": "white",
+    "selectedColor": "white",
+    "backgroundColor": "#008792",
+    "list": [
+      {
+        "pagePath": "pages/home/index",
+        "text": "首页",
+        "iconPath": "images/home.png",
+        "selectedIconPath": "images/home.png"
+      },
+      {
+        "pagePath": "pages/test/test",
+        "text": "心理测试",
+        "iconPath": "images/edit.png",
+        "selectedIconPath": "images/edit.png"
+      }
+    ]
+  },
+  "networkTimeout": {
+    "request": 10000
+  },
+  "theme": {
+    "theme-color": "#008792"
+  }
+}

@@ -1,0 +1,29 @@
+<view>
+  <view class="weui-cells__title" style="color:#123">这里是心理测试列表，请到首页登录后使用</view>
+  <ui-accordion bindchange="slide" wx:for="{{ accordion }}" wx:key="item.title" header-height="50" _pid="{{_pid}}">
+    <view slot="header">
+      <view class="title ui-row ui-row-border-bottom" style="height:45px;">
+        <view style="font-weight:bold;padding-left: 10px;" class="ui-col ui-col-align-left align-left valign-middle">
+          <view class="ui-col-content align-left valign-middle">
+            {{ item.title }}
+          </view>
+        </view>
+        <view class="ui-col ui-col-align-center align-center valign-middle" style="flex:0 0 30px;">
+          <view class="ui-col-content align-center valign-middle"></view>
+        </view>
+      </view>
+    </view>
+    <view slot="content">
+      <view wx:for="{{ item.content }}" wx:for-item="item2" wx:key="item2.path" class="content ui-row" style="height:40px;">
+        <view bindtap="navTo" data-Title="{{ item2.title }}" data-Path="{{ item2.path }}" class="ui-col ui-col-align-left align-left valign-middle" style="padding-left: 10px;">
+          <view class="ui-col-content align-left valign-middle">
+            {{ item2.title }}
+          </view>
+        </view>
+      </view>
+    </view>
+  </ui-accordion>
+  <view class="weui-cells__title" style="color:#666">使用须知:</view>
+  <view class="weui-cells__title" style="color:#666">1. 为了保证测试结果的正确性,我们建议您如实选择</view>
+  <view class="weui-cells__title" style="color:#666">2. 为了保护您的隐私,我们不会存储您的选项及任何个人信息</view>
+</view>

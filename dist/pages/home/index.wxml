@@ -1,0 +1,15 @@
+<view>
+  <view class="container">
+    <view class="userinfo">
+      <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 登录 </button>
+      <block wx:else="">
+        <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" background-size="cover" />
+        <text class="userinfo-nickname">\n\n这里的专业测试\n会帮助你更好地了解自己\n\n\n\n</text>
+      </block>
+    </view>
+    <view class="usermotto">
+      <!--<text class="user-motto">{{motto}}</text>-->
+      <button size="mini" style="background-color:#afdfe4" disabled="{{disabled}}" bindtap="goto" class="user-motto">联系&&反馈</button>
+    </view>
+  </view>
+</view>

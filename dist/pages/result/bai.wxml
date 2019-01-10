@@ -1,0 +1,23 @@
+<view>
+  <view style="box-shadow: 0 0 10px #d0d0d0;margin-top: 20px;" class="ui-row">
+    <view class="ui-col ui-col-align-left align-left" style="">
+      <view class="ui-col-content align-left">
+        <view class="weui-panel__hd">你的分值</view>
+        <view class="weui-panel__bd">
+          <view class="weui-media-box weui-media-box_text">
+            <text class="weui-media-box__title" style="font-size:15px;">{{ total }}分</text>
+          </view>
+        </view>
+
+        <view wx:if="{{ total >= 15 && total <= 25 }}" class="weui-cells__title">属于轻度焦虑</view>
+        <view wx:elif="{{total >= 26 && total <= 35 }}" class="weui-cells__title">属于中度焦虑</view>
+        <view wx:elif="{{total >= 36 }}" class="weui-cells__title">属于重度焦虑</view>
+        <view wx:else="" class="weui-cells__title">无焦虑症状</view>
+        <view class="weui-cells__title">该测评仅供参考，如有疑问，请向专业咨询师寻求帮助。</view>
+      </view>
+    </view>
+  </view>
+  <view style="padding:0px 10px;margin-top:30px;">
+    <ad unit-id="adunit-bc6c61b6d0ef96e0" bindload="loadedAd" binderror="loadedError"></ad>
+  </view>
+</view>

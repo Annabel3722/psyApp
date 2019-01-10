@@ -1,0 +1,74 @@
+<view>
+  <view class="weui-cells">
+    <view class="weui-cell">
+      <view class="weui-cell__bd">
+        神经质
+      </view>
+      <view class="weui-cell__ft">{{ f1 }}分</view>
+    </view>
+    <view class="weui-cell">
+      <view class="weui-cell__bd">
+        具有焦虑、敌对、压抑、自我意识、冲动、脆弱等特质。
+      </view>
+    </view>
+  </view>
+
+  <view class="weui-cells">
+    <view class="weui-cell">
+      <view class="weui-cell__bd">
+        外向性
+      </view>
+      <view class="weui-cell__ft">{{ f2 }}分</view>
+    </view>
+    <view class="weui-cell">
+      <view class="weui-cell__bd">
+        表现出热情、社交、果断、活跃、冒险、乐观等特质。
+      </view>
+    </view>
+  </view>
+
+  <view class="weui-cells">
+    <view class="weui-cell">
+      <view class="weui-cell__bd">
+        开放性
+      </view>
+      <view class="weui-cell__ft">{{ f3 }}分</view>
+    </view>
+    <view class="weui-cell">
+      <view class="weui-cell__bd">
+        具有想象、审美、情感丰富、求异、创造、智能等特质。
+      </view>
+    </view>
+  </view>
+
+  <view class="weui-cells">
+    <view class="weui-cell">
+      <view class="weui-cell__bd">
+        顺同性
+      </view>
+      <view class="weui-cell__ft">{{ f4 }}分</view>
+    </view>
+    <view class="weui-cell">
+      <view class="weui-cell__bd">
+        具有信任、直率、利他、依从、谦虚、移情等特质。
+      </view>
+    </view>
+  </view>
+
+  <view class="weui-cells">
+    <view class="weui-cell">
+      <view class="weui-cell__bd">
+        严谨性
+      </view>
+      <view class="weui-cell__ft">{{ f5 }}分</view>
+    </view>
+    <view class="weui-cell">
+      <view class="weui-cell__bd">
+        显示了胜任、公正、条理、尽职、成就、自律、谨慎、克制等特质。
+      </view>
+    </view>
+  </view>
+  <view style="padding:0px 10px;margin-top:30px;">
+    <ad unit-id="adunit-bc6c61b6d0ef96e0" bindload="loadedAd" binderror="loadedError"></ad>
+  </view>
+</view>

@@ -1,0 +1,7 @@
+<view>
+  <view class="weui-article">
+    <text decode="{{true}}">{{ psg1 }}</text>
+    <text decode="{{true}}">{{ psg2 }}</text>
+  </view>
+  <button type="default" style="margin:2em;background-color:#2585a6;color:white" bindtap="goto">开始测试</button>
+</view>

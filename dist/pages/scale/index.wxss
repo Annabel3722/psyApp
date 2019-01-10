@@ -1,0 +1,32 @@
+/* 1像素解决方案 */
+/*
+ * 清除1px
+ */
+/*
+ * 清除浮动
+ */
+/*
+ * mobile
+ */
+/*
+ * 1px
+ */
+/*
+ * text
+ */
+/* 垂直居中 */
+/* 水平居中 */
+/* 水平垂直居中 */
+/* 超出部分出省略号 */
+/* 多行文本超出部分省略号 */
+page {
+  overflow: hidden;
+  position: fixed;
+  background-image: url('https://psy-1255693559.cos.ap-guangzhou.myqcloud.com/2.png');
+  margin: 0px;
+  background-size: 100% 100%;
+}
+.weui-article {
+  margin: 40rpx 20rpx 25rpx 20rpx;
+  font-size: 14px;
+}

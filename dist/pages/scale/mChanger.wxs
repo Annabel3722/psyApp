@@ -1,0 +1,18 @@
+"use strict";
+
+var getName = function getName(array) {
+  var name = [];
+  for (var i = 0; i < array.length; i++) {
+    name[i] = array[i].name;
+  }
+  return name;
+};
+var getValue = function getValue(array) {
+  var name = [];
+  for (var i = 0; i < array.length; i++) {
+    name[i] = array[i].value;
+  }
+  return name;
+};
+module.exports.getName = getName;
+module.exports.getValue = getValue;
