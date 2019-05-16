@@ -1,0 +1,119 @@
+{
+	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
+		{
+			"path": "pages/test/test",
+			"style": {
+				"navigationBarTitleText": "心理测试"
+			}
+		},
+		{
+			"path": "pages/index/index",
+			"style": {
+				"navigationBarTitleText": "心悦琴"
+			}
+		}, {
+			"path": "pages/scale/index",
+			"style": {
+				"navigationBarTitleText": "心理测试介绍"
+			}
+		},  {
+			"path": "pages/scale/scale",
+			"style": {
+				"navigationBarTitleText": "正在测试"
+			}
+		},  {
+			"path": "pages/result/five",
+			"style": {
+				"navigationBarTitleText": "您的测评结果"
+			}
+		},  {
+			"path": "pages/result/gses",
+			"style": {
+				"navigationBarTitleText": "您的测评结果"
+			}
+		},  {
+			"path": "pages/result/sds",
+			"style": {
+				"navigationBarTitleText": "您的测评结果"
+			}
+		},  {
+			"path": "pages/result/pstr",
+			"style": {
+				"navigationBarTitleText": "您的测评结果"
+			}
+		},  {
+			"path": "pages/result/holland",
+			"style": {
+				"navigationBarTitleText": "您的测评结果"
+			}
+		},  {
+			"path": "pages/result/cdrisc",
+			"style": {
+				"navigationBarTitleText": "您的测评结果"
+			}
+		},  {
+			"path": "pages/result/bai",
+			"style": {
+				"navigationBarTitleText": "您的测评结果"
+			}
+		},  {
+			"path": "pages/result/scl90",
+			"style": {
+				"navigationBarTitleText": "您的测评结果"
+			}
+		},  {
+			"path": "pages/result/mbti",
+			"style": {
+				"navigationBarTitleText": "您的测评结果"
+			}
+		},  {
+			"path": "pages/result/trauma",
+			"style": {
+				"navigationBarTitleText": "您的测评结果"
+			}
+		},	{
+			"path": "pages/train/train",
+			"style": {
+				"navigationBarTitleText": "功能"
+			}
+		},  {
+			"path": "pages/train/index",
+			"style": {
+				"navigationBarTitleText": "了解心理知识"
+			}
+		},  {
+			"path": "pages/train/progress",
+			"style": {
+				"navigationBarTitleText": "和自己对话"
+			}
+		}
+	],
+	"globalStyle": {
+		"navigationBarTextStyle": "white",
+        "navigationBarTitleText": "心悦琴",
+        "navigationBarBackgroundColor": "#008792",
+        "backgroundColor": "#008792"
+	},
+	"tabBar": {
+        "color": "#ffffff",
+        "selectedColor": "#ffffff",
+        "borderStyle": "white",
+        "backgroundColor": "#008792",
+        "list": [{
+			"pagePath": "pages/train/train",
+			"iconPath": "static/images/heart-03.png",
+			"selectedIconPath": "static/images/heart-03.png",
+			"text": "功能"
+		}, {
+            "pagePath": "pages/test/test",
+            "iconPath": "static/images/heart-10.png",
+            "selectedIconPath": "static/images/heart-10.png",
+            "text": "心理测试"
+        }, {
+            "pagePath": "pages/index/index",
+            "iconPath": "static/images/heart-18.png",
+            "selectedIconPath": "static/images/heart-18.png",
+            "text": "关于"
+        }]
+    }
+}
