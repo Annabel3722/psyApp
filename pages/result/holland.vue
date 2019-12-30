@@ -111,7 +111,7 @@
 			</view>
 		</view>
 		<view style="padding:0px 10px;margin-top:30px;">
-			<ad unit-id="adunit-bc6c61b6d0ef96e0" bindload="loadedAd" binderror="loadedError"></ad>
+			<ad unit-id="adunit-029b91cf84c3e95e" ad-type="grid" grid-opacity="0.8" grid-count="5" ad-theme="white"></ad>
 		</view>
 	</view>
 </template>

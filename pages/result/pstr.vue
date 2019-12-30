@@ -35,7 +35,7 @@
 			</view>
 			</view> 
 			<view style="padding:0px 10px;margin-top:30px;">
-				<ad unit-id="adunit-bc6c61b6d0ef96e0" bindload="loadedAd" binderror="loadedError"></ad>
+				<ad unit-id="adunit-515329ad8b37f963"></ad>
 			</view>
 		</view>
 </template>

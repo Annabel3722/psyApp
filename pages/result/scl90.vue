@@ -87,7 +87,7 @@
 <view v-else-if="total > 160" style='font-color:red;font-size:14px;'>您处于轻度症状，详细情况可以寻找咨询老师</view>
 <view v-else></view>
 <view style="padding:0px 10px;margin-top:30px;">
-      <ad unit-id="adunit-bc6c61b6d0ef96e0" bindload="loadedAd" binderror="loadedError"></ad>
+      <ad unit-id="adunit-facd873b17ecdeac"></ad>
     </view>
   </view>
 </template>

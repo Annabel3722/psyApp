@@ -11,9 +11,6 @@
 						</navigator>
 					</view>
 		</view>	
-		<!-- <view class="weui-cells__title" style="color:#666">使用须知:</view>
-		<view class="weui-cells__title" style="color:#666">1. 为了保证测试结果的正确性,我们建议您如实选择</view>
-		<view class="weui-cells__title" style="color:#666">2. 为了保护您的隐私,我们不会存储您的选项及任何个人信息</view> -->
 	</view>
 </template>
 
@@ -95,6 +92,14 @@
 </script>
 
 <style lang="less">
+	page {
+		overflow: hidden;
+		position: fixed;
+		background-image: url('https://psy-1255693559.cos.ap-guangzhou.myqcloud.com/4.png');
+		margin: 0px;
+		background-size: 100% 100%;
+	}
+	
 	.ui-accordion {
 		.header {
 			.arrow {
@@ -129,14 +134,6 @@
 		background-color: #f6f5ec;
 		font-size: 14px;
 		border-bottom: 1px solid #fff;
-	}
-
-	page {
-		overflow: hidden;
-		position: fixed;
-		background-image: url("https://psy-1255693559.cos.ap-guangzhou.myqcloud.com/4.png");
-		margin: 0px;
-		background-size: 100% 100%;
 	}
 
 	.popup1 {

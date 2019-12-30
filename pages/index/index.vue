@@ -20,7 +20,13 @@ margin:auto">
 			<view class="cu-item arrow">
 				<button class="cu-btn content" open-type='contact'>
 					<text class="cuIcon-writefill text-cyan"></text>
-					<text class="text-grey">联系我们</text>
+					<text class="text-grey">寻求帮助</text>
+				</button>
+			</view>
+			<view class="cu-item arrow">
+				<button class="cu-btn content" @click="reward">
+					<text class="cuIcon-writefill text-cyan"></text>
+					<text class="text-grey">支持作者</text>
 				</button>
 			</view>
 			<view class="cu-item arrow">
@@ -55,14 +61,15 @@ margin:auto">
 				</view>
 			</view>
 		</view>
-	<view class="flex justify-center margin-top">
-	<text class="text-center" style="color: #aaa;">Copyright © 2018-{{year}} psyannabel.cn</text>
-	</view>
+		<view class="flex justify-center margin-top">
+			<text class="text-center" style="color: #aaa;">Copyright © 2018-{{year}} psyannabel.cn</text>
+		</view>
 
 	</view>
 </template>
 
 <script>
+	let videoAd = null
 	const app = getApp()
 	export default {
 		data() {
@@ -78,6 +85,18 @@ margin:auto">
 
 		},
 		methods: {
+			reward() {
+				if (videoAd) {
+					videoAd.show().catch(() => {
+						// 失败重试
+						videoAd.load()
+							.then(() => videoAd.show())
+							.catch(err => {
+								console.log('激励视频 广告显示失败')
+							})
+					})
+				}
+			},
 			//事件处理函数
 			CopyLink: function(e) {
 				uni.setClipboardData({
@@ -106,22 +125,26 @@ margin:auto">
 			},
 			getUserInfo: function(e) {
 				app.globalData.userInfo = e.detail.userInfo;
-				this.setData({
-					userInfo: e.detail.userInfo,
-					hasUserInfo: true
-				});
+				this.userInfo = e.detail.userInfo;
+				this.hasUserInfo = true;
 				app.globalData.hasUserInfo = true;
 				console.log(this.data.userInfo);
 			}
 		},
 		onLoad() {
 			var _this = this;
+			if (wx.createRewardedVideoAd) {
+				videoAd = wx.createRewardedVideoAd({
+					adUnitId: 'adunit-d4d4e203f4555bd4'
+				})
+				videoAd.onLoad(() => {})
+				videoAd.onError((err) => {})
+				videoAd.onClose((res) => {})
+			}
 			_this.canIUse = uni.canIUse('button.open-type.getUserInfo')
 			if (app.globalData.userInfo) {
-				this.setData({
-					userInfo: app.globalData.userInfo,
-					hasUserInfo: true
-				})
+				this.userInfo = app.globalData.userInfo;
+				this.hasUserInfo = true;
 			} else if (this.canIUse) {
 				// 在没有 open-type=getUserInfo 版本的兼容处理
 				uni.getUserInfo({
@@ -137,6 +160,13 @@ margin:auto">
 </script>
 
 <style lang="less">
+	page {
+		overflow: hidden;
+		position: fixed;
+		background-image: url('https://psy-1255693559.cos.ap-guangzhou.myqcloud.com/index.png');
+		margin: 0px;
+		background-size: 100% 100%;
+	}
 	.userinfo {
 		display: flex;
 		flex-direction: column;
@@ -173,13 +203,5 @@ margin:auto">
 		justify-content: space-between;
 		padding: 180rpx 30rpx 30rpx 30rpx;
 		box-sizing: border-box;
-	}
-
-	page {
-		overflow: hidden;
-		position: fixed;
-		background-image: url('https://kindlestatic-1255693559.cos.ap-guangzhou.myqcloud.com/index.png');
-		margin: 0px;
-		background-size: 100% 100%;
 	}
 </style>

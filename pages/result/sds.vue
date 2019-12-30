@@ -12,7 +12,7 @@
 			</view>
 		</view>
 		<view style="padding:0px 10px;margin-top:30px;">
-			<ad unit-id="adunit-bc6c61b6d0ef96e0" bindload="loadedAd" binderror="loadedError"></ad>
+			<ad unit-id="adunit-863f07161f42610f"></ad>
 		</view>
 	</view>
 </template>

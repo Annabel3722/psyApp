@@ -31,5 +31,5 @@
 		background-image: url('https://psy-1255693559.cos.ap-guangzhou.myqcloud.com/5.png');
 		margin: 0px;
 		background-size: 100% 100%;
-	}	
+	}
 </style>
