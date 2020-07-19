@@ -238,13 +238,13 @@
 				url: config.service.questionsUrl + options.style + ".html",
 				method: "GET",
 				success(res) {
-					_this.questions = res.data.sites[2].questions,
-						_this.items = res.data.sites[3].items,
-						_this.current_question = res.data.sites[2].questions[0],
-						_this.current_item = res.data.sites[3].items[0],
-						_this.length = res.data.sites[2].questions.length,
-						_this.style = options.style,
-						_this.name = name
+					_this.questions = res.data.sites[2].questions
+					_this.items = res.data.sites[3].items
+					_this.current_question = res.data.sites[2].questions[0]
+					_this.current_item = res.data.sites[3].items[0]
+					_this.length = res.data.sites[2].questions.length
+					_this.style = options.style
+					_this.name = name
 				}
 			});
 		},
@@ -304,20 +304,10 @@
 		display: flex;
 	}
 
-	.finger-swiper {
-		color: #fff;
-		text-align: center;
-	}
-
-	.know {
-		color: #d6545d;
-		text-decoration: underline;
-	}
-
 	page {
 		overflow: hidden;
 		position: fixed;
-		background-image: url("https://psy-1255693559.cos.ap-guangzhou.myqcloud.com/scale.png");
+		background-image: url("https://app.photo.psyannabel.cn/scale.png");
 		margin: 0px;
 		background-size: 100% 100%;
 	}

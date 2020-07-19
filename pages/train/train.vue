@@ -29,7 +29,7 @@
 	page {
 		overflow: hidden;
 		position: fixed;
-		background-image: url('https://psy-1255693559.cos.ap-guangzhou.myqcloud.com/6.png');
+		background-image: url('https://app.photo.psyannabel.cn/6.png');
 		margin: 0px;
 		background-size: 100% 100%;
 	}

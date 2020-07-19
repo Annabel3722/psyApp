@@ -7,7 +7,7 @@
 		<navigator class="text-center" :url="'../scale/scale?style='+style">
 			 <button class='cu-btn margin bg-cyan lg block'>开始测试</button>
 		</navigator> 
-   
+    
   </view>
 </template>
 
@@ -24,7 +24,7 @@ export default {
 		getShow: function () {
 		  var that = this
 		  wx.request({
-		    url: 'https://psy-1255693559.cos-website.ap-guangzhou.myqcloud.com/scale/'+that.style+'.html',
+		    url: 'https://app.photo.psyannabel.cn/'+that.style+'.html',
 		    method: 'GET',
 		    success: function (res) {
 		      console.log(res);
@@ -93,7 +93,7 @@ export default {
 page { 
   overflow:hidden; 
   position:fixed; 
-  background-image: url('https://psy-1255693559.cos.ap-guangzhou.myqcloud.com/2.png'); 
+  background-image: url('https://app.photo.psyannabel.cn/2.png'); 
   margin: 0px; 
   background-size: 100% 100%; 
 	font-size: 14px;

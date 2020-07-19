@@ -95,45 +95,15 @@
 	page {
 		overflow: hidden;
 		position: fixed;
-		background-image: url('https://psy-1255693559.cos.ap-guangzhou.myqcloud.com/4.png');
+		background-image: url('https://app.photo.psyannabel.cn/4.png');
 		margin: 0px;
 		background-size: 100% 100%;
-	}
-	
-	.ui-accordion {
-		.header {
-			.arrow {
-				right: 8px;
-				top: 10px;
-			}
-		}
-	}
-
-	.title {
-		width: 100%;
-		background-color: "#008792";
-		font-size: 14px;
-
-		.state {
-			border: 1px solid #008792;
-			width: 100%;
-			height: 30px;
-			// .mix-flex-center();
-			color: #008792;
-			font-size: 12px;
-		}
 	}
 
 	.weui-cells__title {
 		margin: 1em;
 		color: #999;
 		font-size: 14px;
-	}
-
-	.content {
-		background-color: #f6f5ec;
-		font-size: 14px;
-		border-bottom: 1px solid #fff;
 	}
 
 	.popup1 {

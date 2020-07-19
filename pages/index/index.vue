@@ -23,12 +23,12 @@ margin:auto">
 					<text class="text-grey">寻求帮助</text>
 				</button>
 			</view>
-			<view class="cu-item arrow">
+			<!-- <view class="cu-item arrow">
 				<button class="cu-btn content" @click="reward">
 					<text class="cuIcon-writefill text-cyan"></text>
 					<text class="text-grey">支持作者</text>
 				</button>
-			</view>
+			</view> -->
 			<view class="cu-item arrow">
 				<button class="cu-btn content" @tap="showModal" data-target="DialogModal1">
 					<text class="cuIcon-writefill text-cyan"></text>
@@ -50,7 +50,7 @@ margin:auto">
 					<view class='margin-top-sm'>1. 为了保证测试结果的正确性,我们建议您如实选择</view>
 					<view class='margin-top-sm'>2. 为了保护您的隐私,我们不会存储您的选项及任何个人信息</view>
 					<view class="cu-btn round bg-gradual-blue shadow" @tap="CopyLink" data-text="wxd7de467f6e6cf741">
-						<text>心理公众号可关联</text>
+						<text>心理公众号可关联，点击复制关联ID</text>
 					</view>
 				</view>
 				<view class="cu-bar bg-white justify-end">
@@ -163,7 +163,7 @@ margin:auto">
 	page {
 		overflow: hidden;
 		position: fixed;
-		background-image: url('https://psy-1255693559.cos.ap-guangzhou.myqcloud.com/index.png');
+		background-image: url('https://app.photo.psyannabel.cn/index.png');
 		margin: 0px;
 		background-size: 100% 100%;
 	}
@@ -183,16 +183,6 @@ margin:auto">
 	.userinfo-nickname {
 		color: #aaa;
 		font-size: 15px;
-	}
-
-	.comment {
-		width: 140rpx;
-		height: 140rpx;
-		margin: 20rpx;
-	}
-
-	.navigator-hover {
-		color: blue;
 	}
 
 	.container {
