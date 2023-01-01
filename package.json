@@ -9,7 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "copy-webpack-plugin": "^5.0.4",
+    "copy-webpack-plugin": "^11.0.0",
     "flyio": "^0.6.14"
   }
 }
